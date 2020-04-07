@@ -1,0 +1,14 @@
+html {
+  font-family: fot-tsukuardgothic-std;
+  font-style: normal;
+  font-weight: bold;
+  visibility: hidden;
+}
+
+.v-btn {
+  font-weight: bold!important;
+}
+
+html.wf-active {
+  visibility: visible;
+}

@@ -1,0 +1,97 @@
+<template>
+  <div id="joinPage">
+    <Header page-type="General" />
+    <h1>採用情報</h1>
+    <p>
+      Miftonでは、Minecraftプレイヤーの創作を支援する目標のもと、スタッフとして協力して頂ける方を募集しています。
+    </p>
+    <h2>募集スタッフ</h2>
+    <p>
+      ・巡回/治安維持:
+      Miftonではユーザーが自由に交流できる空間が多く存在します。利用規約に違反するような、暴言・不適切な投稿がないか巡回し、該当投稿・アカウントを削除、凍結します。
+    </p>
+    <p>
+      ・トピックライター:
+      公式アカウントから、Minecraftに関するトピックを執筆し、投稿します。月に2回ほどのペースでの執筆を行います。
+    </p>
+    <p>
+      ・Web開発:
+      Web版のMiftonを開発します。フロントエンドはVue/Nuxt、バックエンドはRailsAPIで開発しています。
+    </p>
+    <p>
+      ・アプリ開発:
+      iPhone/Android版のMiftonを開発します。それぞれSwift/Kotlinで開発しています。
+    </p>
+    <p>
+      ・広報/PR:
+      ユーザーからのフィードバックの反映・公式Twitter/Facebookにおけるプロモーションを行います。
+    </p>
+    <p>
+      ・ディレクター:
+      新しいサービスの企画・立案、スタッフの管理、運営などを行います。
+    </p>
+    <h2>求める素質</h2>
+    <p>・Minecraftが好きで、環境をより良くしていきたい向上心を持つこと</p>
+    <p>・良識があること。</p>
+    <p>
+      ・(開発職に限り)最低限の技術を有していること。口頭質問などを行います。
+    </p>
+    <h2>スタッフの種類</h2>
+    <h3>管理者</h3>
+    <p>
+      Miftonチームで卓越した能力・信用のあるスタッフの方には、一つの仕事に留まらず、サービス・ユーザーの全体を管理する権限が与えられます。
+    </p>
+    <h3>マネージャー</h3>
+    <p>
+      各チームで優秀なスタッフは、チームの取りまとめを行い、管理者と一緒に指針を決めていきます。各チームに0~1人配属されます。
+    </p>
+    <h3>スタッフ</h3>
+    <p>
+      配属されたチームの仕事を行います。一定の権限を持ちます。
+    </p>
+    <h3>トラストユーザー</h3>
+    <p>
+      Miftonをよく利用し、いい影響を与えているユーザーがトラストユーザーになることができます。希望すれば無条件でスタッフとして働くことや、一定の特典を得られます。
+    </p>
+    <p>
+      2ヶ月に1回、仕事の進捗状況や、成果などを元に降格・昇格を行います。トラストユーザーが認定されるのも同日です。
+    </p>
+    <h2>採用の流れ</h2>
+    <v-timeline>
+      <v-timeline-item>
+        <v-card>
+          <v-card-title>1次審査</v-card-title>
+          <v-card-text>
+            ページ下部より、記入事項を全て記入し、送信してください。
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+      <v-timeline-item>
+        <v-card>
+          <v-card-title>2次審査</v-card-title>
+          <v-card-text>
+            1次審査を通過した方には、2次審査の1週間前までにはMiftonで通知を行います。Discordを使った電話面談を行いますので、日程調整をしてください。
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+      <v-timeline-item>
+        <v-card>
+          <v-card-title>3次審査</v-card-title>
+          <v-card-text>
+            2次審査を通過した方は、2週間スタッフとして働いていただきます。特に問題がなければ採用となります。
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+    </v-timeline>
+  </div>
+</template>
+
+<script>
+import Header from '~/components/layouts/commonHeader'
+
+export default {
+  components: {
+    Header
+  }
+}
+</script>

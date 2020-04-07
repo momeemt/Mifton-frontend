@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
@@ -17,7 +17,22 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    __dangerouslyDisableSanitizers: ['script'],
+    script: [
+      {
+        innerHTML: `
+      (function(d) {
+        var config = {
+          kitId: 'acu2quv',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      `
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -26,11 +41,20 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~assets/css/font.css',
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~plugins/persistedstate.js', ssr: false },
+    { src: '~plugins/api.js' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -70,17 +94,17 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      // dark: true,
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
+        // dark: {
+        //   primary: colors.blue.darken2,
+        //   accent: colors.grey.darken3,
+        //   secondary: colors.amber.darken3,
+        //   info: colors.teal.lighten1,
+        //   warning: colors.amber.base,
+        //   error: colors.deepOrange.accent4,
+        //   success: colors.green.accent3
+        // }
       }
     }
   },

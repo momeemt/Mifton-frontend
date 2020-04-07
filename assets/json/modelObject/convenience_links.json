@@ -1,0 +1,28 @@
+{
+  "name": "便利リンク",
+  "id": "ConvenienceLinks",
+  "label": {
+    "name": {
+      "name": "リンク名",
+      "type": "text"
+    },
+    "description": {
+      "name": "説明",
+      "type": "text"
+    },
+    "link": {
+      "name": "リンク",
+      "type": "text"
+    },
+    "is_public": {
+      "name": "公開中？",
+      "type": "checkbox"
+    }
+  },
+  "data": {
+    "name": "",
+    "description": "",
+    "link": "",
+    "is_public": false
+  }
+}

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header.vue'
+import Header from '~/components/layouts/Header'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import NotificationContainer from '~/components/bector/NotificationContainer'
 

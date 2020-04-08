@@ -1,6 +1,6 @@
 <template>
   <div id="loginPage">
-    <Header pageType="General"></Header>
+    <Header pageType="General" />
     <div>
       <p>ログインする</p>
       <v-text-field v-model="user_id" placeholder="ユーザーID"></v-text-field>

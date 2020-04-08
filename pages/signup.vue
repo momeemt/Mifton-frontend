@@ -105,7 +105,7 @@
 }
 </style>
 <script>
-import Header from '~/components/header.vue'
+import Header from '~/components/layouts/Header'
 
 export default {
   components: {

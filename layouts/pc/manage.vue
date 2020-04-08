@@ -17,7 +17,7 @@
 
 <script>
 import HyperLinkBar from '~/components/hyperLinkBar'
-import Header from '~/components/layouts/commonHeader'
+import Header from '~/components/layouts/Header'
 export default {
   components: { HyperLinkBar, Header },
   data() {

@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'CommonHeader',
+  name: 'Header',
   props: ['pageType'],
   methods: {
     logout() {

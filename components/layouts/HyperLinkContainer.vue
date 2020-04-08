@@ -1,5 +1,5 @@
 <template>
-  <div id="HyperLinkBar">
+  <div id="HyperLinkContainer">
     <div id="HyperLinkWrapper">
       <v-list rounded>
         <v-list-item-group :color="selectListColor()" mandatory>
@@ -26,7 +26,7 @@
 i {
   width: 30px !important;
 }
-#HyperLinkBar {
+#HyperLinkContainer {
   width: 100%;
   display: flex;
   justify-content: center;

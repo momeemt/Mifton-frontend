@@ -4,7 +4,7 @@
       <Header page-type="General" />
       <div id="flex">
         <div id="leftContent">
-          <hyper-link-bar :listDatas="listDatas" pageType="General" />
+          <HyperLinkContainer :listDatas="listDatas" pageType="General" />
         </div>
         <div id="middleContent">
           <nuxt />
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import HyperLinkBar from '~/components/hyperLinkBar'
+import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import Header from '~/components/layouts/Header'
 export default {
-  components: { HyperLinkBar, Header },
+  components: { HyperLinkContainer, Header },
   data() {
     return {
       user_id: /* this.$store.state.currentUser.user_id */ 16,

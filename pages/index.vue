@@ -279,7 +279,7 @@
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/commonFooter'
 import SubFooter from '~/components/layouts/subFooter'
-import FunctionBar from '~/components/hyperLinkBar'
+import FunctionBar from '~/components/layouts/HyperLinkContainer'
 
 export default {
   components: {

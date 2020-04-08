@@ -1,5 +1,5 @@
 <template>
-  <div id="hyperLinkBar">
+  <div id="HyperLinkContainer">
     <div class="wrapper">
       <v-dialog v-model="isOpenDropModal" max-width="600px">
         <NewDropForm></NewDropForm>
@@ -45,7 +45,7 @@
 </template>
 
 <style lang="scss" scope>
-#hyperLinkBar {
+#HyperLinkContainer {
   width: 100%;
   height: 100%;
   display: flex;

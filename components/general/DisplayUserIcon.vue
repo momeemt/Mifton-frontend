@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="existUserIcon">
-      {{ user.icon }}
+      <img src="/default_icon.png" />
     </div>
     <div v-else>
       <img src="/default_icon.png" />
@@ -20,8 +20,17 @@ export default {
   },
   data() {
     return {
-      existUserIcon: this.user.icon !== null
+      existUserIcon: false // this.user.icon !== null
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+img {
+  border-radius: 50%;
+  width: 45px;
+  margin: 10px 20px 2px 2px;
+  border: rgba(0, 0, 0, 0.12) solid 1px;
+}
+</style>

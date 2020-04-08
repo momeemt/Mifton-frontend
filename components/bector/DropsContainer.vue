@@ -49,7 +49,7 @@ import RemoveDropConfirmDialog from '~/components/bector/RemoveDropConfirmDialog
 import DisplayUserIcon from '~/components/general/DisplayUserIcon'
 
 export default {
-  name: 'DropContainerVue',
+  name: 'DropsContainerVue',
   components: {
     RemoveDropConfirmDialog,
     DisplayUserIcon

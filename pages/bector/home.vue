@@ -65,7 +65,7 @@
 <script>
 // import ActionCable from 'actioncable'
 import FunctionBar from '~/components/functionBar.vue'
-import DropsContainer from '~/components/DropsContainer.vue'
+import DropsContainer from '~/components/bector/DropsContainer.vue'
 import NewDropForm from '~/components/NewDropForm.vue'
 import Header from '~/components/layouts/commonHeader.vue'
 

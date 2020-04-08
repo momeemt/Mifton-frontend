@@ -274,7 +274,7 @@
 
 <script>
 import Header from '~/components/layouts/Header'
-import Footer from '~/components/layouts/commonFooter'
+import Footer from '~/components/layouts/Footer'
 import SubFooter from '~/components/layouts/subFooter'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 

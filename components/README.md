@@ -21,5 +21,8 @@ Dropを削除するときの確認ダイアログ
 ### Header
 共通ヘッダー
 
+### Footer
+共通フッター
+
 ### HyperLinkContainer
 アプリケーション内リンクを表示します

@@ -1,7 +1,25 @@
 # COMPONENTS
 
-**This directory is not required, you can delete it if you don't want to use it.**
+## bector
 
-The components directory contains your Vue.js Components.
+### DropContainer 
+Dropを一覧表示します
 
-_Nuxt.js doesn't supercharge these components._
+### NotificationContainer
+通知を一覧表示します
+
+### RemoveDropConfirmDialog
+Dropを削除するときの確認ダイアログ
+
+## general
+
+### DisplayUserIcon
+ユーザーがアイコンを設定しているかどうかを判定し、表示します
+
+## layouts
+
+### Header
+共通ヘッダー
+
+### HyperLinkContainer
+アプリケーション内リンクを表示します

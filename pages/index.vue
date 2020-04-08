@@ -67,10 +67,7 @@
           </v-stepper>
         </v-overlay>
         <div id="leftContent">
-          <function-bar
-            :listDatas="listDatas"
-            page-type="General"
-          ></function-bar>
+          <HyperLinkContainer :listDatas="listDatas" page-type="General" />
         </div>
         <div id="middleContent">
           <template>
@@ -279,14 +276,14 @@
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/commonFooter'
 import SubFooter from '~/components/layouts/subFooter'
-import FunctionBar from '~/components/layouts/HyperLinkContainer'
+import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 
 export default {
   components: {
     Header,
     Footer,
     SubFooter,
-    FunctionBar
+    HyperLinkContainer
   },
   data() {
     return {

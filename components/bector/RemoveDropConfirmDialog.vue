@@ -8,7 +8,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="cancelRemoving" color="gray darken-1">
+        <v-btn @click="cancelRemovingDrop" color="gray darken-1">
           キャンセルする
         </v-btn>
         <v-btn @click="removeDrop" color="red darken-1">
@@ -22,21 +22,19 @@
 <script>
 export default {
   name: 'RemoveDropConfirmDialogVue',
-  data() {
-    return {
-      showing_dialog: false
+  props: {
+    showing_dialog: {
+      type: Boolean,
+      required: true
     }
   },
   methods: {
-    cancelRemoving() {
-      this.showing_dialog = false
-    },
     removeDrop() {
-      this.showing_dialog = false
       this.$emit('rmDrop')
+    },
+    cancelRemovingDrop() {
+      this.$emit('cancelRemovingDrop')
     }
   }
 }
 </script>
-
-<style scoped></style>

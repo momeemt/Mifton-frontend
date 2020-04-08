@@ -11,6 +11,9 @@ export default ({ app }, inject) => {
         await app.$axios.$post('/api/v1/drops', data).catch((err) => {
           console.log(err)
         })
+      },
+      async delete(data) {
+        await app.$axios.$delete(`/api/v1/drops/${data.id}`, data)
       }
     },
     Users: {

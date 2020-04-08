@@ -1,6 +1,10 @@
 <template>
-  <v-card id="dropContainer">
-    <RemoveDropConfirmDialog @rmDrop="removeDrop" />
+  <v-card id="dropsContainer">
+    <RemoveDropConfirmDialog
+      @rmDrop="removeDrop"
+      @cancelRemovingDrop="cancelRemovingDrop"
+      :showing_dialog="showing_dialog"
+    />
     <v-list-item v-for="drop in drops" :key="drop.id" three-line>
       <DisplayUserIcon :user="drops.user" />
       <v-list-item-content>
@@ -33,7 +37,7 @@
           </v-btn>
         </template>
         <v-list width="150">
-          <v-list-item @click.stop="openConfirmDialog(drop.id)">
+          <v-list-item @click.stop="openConfirmDialog(drop)">
             <v-icon class="red--text">mdi-delete</v-icon>
             <v-list-item-title class="red--text">削除する</v-list-item-title>
           </v-list-item>
@@ -70,18 +74,54 @@ export default {
   },
   data() {
     return {
-      expectedRemovingDropID: -1
+      expectedRemovingDrop: {},
+      showing_dialog: false
     }
   },
   methods: {
-    openConfirmDialog(dropID) {
-      this.$refs.showing_dialog = true
-      this.expectedRemovingDropID = dropID
+    openConfirmDialog(drop) {
+      this.showing_dialog = true
+      this.expectedRemovingDrop = drop
     },
     removeDrop() {
-      // Todo: ドロップを削除できるようにする
-      // this.$api.Drops.delete(this.expectedRemovingDropID)
+      this.showing_dialog = false
+      this.$api.Drops.delete(this.expectedRemovingDrop)
+    },
+    cancelRemovingDrop() {
+      this.showing_dialog = false
     }
   }
 }
 </script>
+
+<style lang="scss">
+.dropDetailInfo {
+  display: flex;
+  p {
+    font-weight: normal;
+    margin-right: 1em;
+  }
+  .dropUserID,
+  .dropCreatedAt {
+    color: gray;
+    font-size: small;
+  }
+}
+.dropAction {
+  margin-top: 10px;
+  i {
+    font-size: 18px !important;
+  }
+}
+#dropContent {
+  white-space: pre-line;
+}
+#dropsContainer {
+  box-shadow: none !important;
+}
+.dropsListItem {
+  border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+  padding: 0.5em 0.5em 0 0.5em;
+  align-items: flex-start;
+}
+</style>

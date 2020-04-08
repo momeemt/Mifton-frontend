@@ -1,12 +1,12 @@
 <template>
   <div>
-    <p>ブックマーク</p>
+    <p>通知</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BectorBookmarksPage',
+  name: 'BectorNotificationsPage',
   layout: 'pc/Bector'
 }
 </script>

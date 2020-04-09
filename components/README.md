@@ -2,8 +2,11 @@
 
 ## bector
 
-### DropContainer 
+### DropsContainer 
 Dropを一覧表示します
+
+### DropItem
+Drop単体のBoxを表示します
 
 ### NotificationContainer
 通知を一覧表示します

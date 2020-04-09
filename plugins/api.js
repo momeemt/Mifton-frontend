@@ -14,6 +14,14 @@ export default ({ app }, inject) => {
       },
       async delete(data) {
         await app.$axios.$delete(`/api/v1/drops/${data.id}`, data)
+      },
+      async show(id) {
+        const drop = await app.$axios
+          .$get(`/api/v1/drops/${id}`)
+          .catch((err) => {
+            console.log(err)
+          })
+        return { drop }
       }
     },
     Users: {

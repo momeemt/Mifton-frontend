@@ -5,7 +5,12 @@
       @cancelRemovingDrop="cancelRemovingDrop"
       :showing_dialog="showing_dialog"
     />
-    <v-list v-for="drop in drops" :key="drop.id" three-line>
+    <v-list
+      v-for="drop in drops"
+      :key="drop.id"
+      three-line
+      class="dropsContainerList"
+    >
       <DropItem :drop="drop" />
     </v-list>
   </v-card>
@@ -69,5 +74,8 @@ export default {
   border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
   padding: 0.5em 0.5em 0 0.5em;
   align-items: flex-start;
+}
+.dropsContainerList {
+  padding: 0 !important;
 }
 </style>

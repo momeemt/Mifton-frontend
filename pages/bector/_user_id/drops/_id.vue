@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div>
-      <v-btn @click="returnPage" icon>
+    <div class="returnPageButtonContainer">
+      <v-btn @click="returnPage" icon class="returnPageButton">
         <v-icon>fas fa-arrow-left</v-icon>
       </v-btn>
-      <span>戻る</span>
+      <p>戻る</p>
     </div>
     <v-list id="dropItemBox" flat disabled>
       <DropItem :drop="drop" />
@@ -28,11 +28,6 @@ export default {
       drop: {}
     }
   },
-  methods: {
-    returnPage() {
-      this.$router.go(-1)
-    }
-  },
   async asyncData({ route, app }) {
     const { id } = route.params
     // eslint-disable-next-line camelcase
@@ -47,12 +42,31 @@ export default {
     //   })
     // }
     return { drop }
+  },
+  methods: {
+    returnPage() {
+      this.$router.go(-1)
+    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #dropItemBox {
   border-top: rgba(0, 0, 0, 0.12) solid 1px;
+}
+.returnPageButtonContainer {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  p {
+    margin-bottom: 0;
+  }
+}
+.returnPageButton {
+  margin-right: 2em;
+  i {
+    font-size: 18px !important;
+  }
 }
 </style>

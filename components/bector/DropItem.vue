@@ -19,13 +19,31 @@
       </div>
       <p class="dropContent">{{ drop.content }}</p>
       <div class="dropAction">
-        <v-btn class="mx-2" icon dark small color="grey lighten-1"
+        <v-btn
+          @click.stop=""
+          class="mx-2"
+          icon
+          dark
+          small
+          color="grey lighten-1"
           ><v-icon>mdi-reply</v-icon></v-btn
         >
-        <v-btn class="mx-2" icon dark small color="grey lighten-1"
+        <v-btn
+          @click.stop=""
+          class="mx-2"
+          icon
+          dark
+          small
+          color="grey lighten-1"
           ><v-icon>mdi-face</v-icon></v-btn
         >
-        <v-btn class="mx-2" icon dark small color="grey lighten-1"
+        <v-btn
+          @click.stop=""
+          class="mx-2"
+          icon
+          dark
+          small
+          color="grey lighten-1"
           ><v-icon>fas fa-retweet</v-icon></v-btn
         >
       </div>

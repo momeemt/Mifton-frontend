@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="returnPageButtonContainer">
-      <v-btn @click="returnPage" icon class="returnPageButton">
-        <v-icon>fas fa-arrow-left</v-icon>
-      </v-btn>
-      <p>戻る</p>
-    </div>
+    <ReturnPageButtonContainer />
     <v-list id="dropItemBox" flat disabled>
       <DropItem :drop="drop" />
     </v-list>
@@ -15,11 +10,13 @@
 
 <script>
 import DropItem from '~/components/bector/DropItem'
+import ReturnPageButtonContainer from '~/components/general/ReturnPageButtonContainer'
 export default {
   name: 'IdVue',
   layout: 'pc/Bector',
   components: {
-    DropItem
+    DropItem,
+    ReturnPageButtonContainer
   },
   data() {
     return {
@@ -42,31 +39,6 @@ export default {
     //   })
     // }
     return { drop }
-  },
-  methods: {
-    returnPage() {
-      this.$router.go(-1)
-    }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-#dropItemBox {
-  border-top: rgba(0, 0, 0, 0.12) solid 1px;
-}
-.returnPageButtonContainer {
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  p {
-    margin-bottom: 0;
-  }
-}
-.returnPageButton {
-  margin-right: 2em;
-  i {
-    font-size: 18px !important;
-  }
-}
-</style>

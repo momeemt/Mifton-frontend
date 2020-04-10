@@ -1,14 +1,19 @@
 <template>
   <div>
+    <ReturnPageButtonContainer />
     <h1>{{ user.name }}</h1>
     <p>@{{ user.user_id }}</p>
   </div>
 </template>
 
 <script>
+import ReturnPageButtonContainer from '~/components/general/ReturnPageButtonContainer'
 export default {
   name: 'IndexVue',
   layout: 'pc/Bector',
+  components: {
+    ReturnPageButtonContainer
+  },
   data() {
     return {
       user: {}

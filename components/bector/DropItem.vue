@@ -1,7 +1,7 @@
 <template>
   <v-list-item
-    :to="`/bector/${drop.user.user_id}/drops/${drop.id}`"
-    nuxt
+    @click="toDropDetailPage(drop.user.user_id, drop.id)"
+    :ripple="false"
     class="dropItem"
   >
     <DisplayUserIcon :user="drop.user" />
@@ -77,12 +77,21 @@ export default {
     openConfirmDialog(drop) {
       this.showing_dialog = true
       // this.expectedRemovingDrop = drop
+    },
+    async toDropDetailPage(userId, dropId) {
+      await this.$router.push(`/bector/${userId}/drops/${dropId}`)
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.dropItem {
+  border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
 .dropDetailInfo {
   display: flex;
   p {

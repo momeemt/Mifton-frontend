@@ -54,6 +54,5 @@ export default {
 <style scoped>
 #dropItemBox {
   border-top: rgba(0, 0, 0, 0.12) solid 1px;
-  border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
 }
 </style>

@@ -35,6 +35,22 @@ export default ({ app }, inject) => {
         await app.$axios.$post('/api/v1/users', data).catch((err) => {
           console.log(err)
         })
+      },
+      async show(id) {
+        const user = await app.$axios
+          .$get(`/api/v1/users/${id}`)
+          .catch((err) => {
+            console.log(err)
+          })
+        return { user }
+      },
+      async getByUserId(userId) {
+        const user = await app.$axios
+          .$get(`/api/v1/users/user_id/${userId}`)
+          .catch((err) => {
+            console.log(err)
+          })
+        return { user }
       }
     },
     ConvenienceLinks: {

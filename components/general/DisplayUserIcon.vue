@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click.stop="toUserProfilePage(user.user_id)">
     <div v-if="existUserIcon">
       <img src="/default_icon.png" />
     </div>
@@ -21,6 +21,12 @@ export default {
   data() {
     return {
       existUserIcon: false // this.user.icon !== null
+    }
+  },
+  methods: {
+    async toUserProfilePage(userId) {
+      console.log('coming')
+      await this.$router.push(`/bector/${userId}`)
     }
   }
 }

@@ -23,9 +23,6 @@
 </template>
 
 <style lang="scss" scope>
-i {
-  width: 30px !important;
-}
 #HyperLinkContainer {
   width: 100%;
   display: flex;
@@ -34,6 +31,10 @@ i {
 #HyperLinkWrapper {
   margin-top: 4vh;
   width: 80%;
+
+  i {
+    width: 30px !important;
+  }
 }
 v-list {
   margin: 0 auto;

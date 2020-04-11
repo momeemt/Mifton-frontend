@@ -53,7 +53,8 @@ export default {
    */
   plugins: [
     { src: '~plugins/persistedstate.js', ssr: false },
-    { src: '~plugins/api.js' }
+    { src: '~plugins/api.js' },
+    { src: '~/plugins/infiniteloading', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

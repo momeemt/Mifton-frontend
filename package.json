@@ -32,6 +32,7 @@
     "moment-timezone": "^0.5.27",
     "nuxt": "^2.0.0",
     "vue": "latest",
+    "vue-infinite-loading": "^2.4.5",
     "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {

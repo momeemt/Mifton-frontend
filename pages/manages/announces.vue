@@ -4,36 +4,38 @@
       :modelJsonData="usersObjectForModal"
       :headers="headers"
       :modelObject="resData"
-      model-name="ユーザー"
+      model-name="お知らせ"
     />
   </div>
 </template>
 
 <script>
-import manageDataTable from '~/components/manages/manageDataTable'
-import usersJsonData from '~/assets/json/modelObject/users.json'
+import ManageDataTable from '~/components/manages/manageDataTable'
+import newsJsonData from '~/assets/json/modelObject/news.json'
 export default {
-  name: 'Users',
+  name: 'NewsVue',
   layout: 'pc/manage',
   components: {
-    manageDataTable
+    ManageDataTable
   },
   data() {
     return {
       headers: [
-        { text: 'ユーザー名', value: 'name' },
-        { text: 'ユーザーID', value: 'user_id' },
-        { text: '権限', value: 'is_public' },
+        { text: 'ID', value: 'id' },
+        { text: 'タイトル', value: 'title' },
+        { text: '内容', value: 'content' },
         { text: '操作', value: 'actions', sortable: false }
       ],
-      usersObjectForModal: usersJsonData
+      usersObjectForModal: newsJsonData
     }
   },
   async asyncData({ app }) {
-    const res = await app.$api.index('users')
+    const res = await app.$api.index('news')
     const resData = res.res
     const resCode = res.resCode
     return { resData, resCode }
   }
 }
 </script>
+
+<style scoped></style>

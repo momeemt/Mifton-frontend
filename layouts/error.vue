@@ -1,20 +1,19 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+  <v-app>
+    <Header page-type="General" />
+    <div v-if="error.statusCode === 404">
+      <img id="img404NotFound" src="../assets/404.jpeg" />
+    </div>
+    <div v-else>
+      <p>エラーが起きました</p>
+    </div>
   </v-app>
 </template>
 
 <script>
+import Header from '~/components/layouts/Header'
 export default {
-  layout: 'empty',
+  components: { Header },
   props: {
     error: {
       type: Object,
@@ -37,8 +36,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 h1 {
   font-size: 20px;
+}
+#img404NotFound {
+  width: 100vw;
+  height: calc(100vh - 50px);
 }
 </style>

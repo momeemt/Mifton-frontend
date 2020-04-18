@@ -54,8 +54,7 @@ export default {
   methods: {
     createModelObject() {
       const id = this.modelObject.id
-      const postTarget = this.$api[id]
-      postTarget.create(this.modelObject.data)
+      this.$api.create(id, this.modelObject.data)
       this.createDialog = false
     }
   }

@@ -54,17 +54,17 @@ export default {
           text: '便利リンク管理',
           icon: 'fas fa-code-branch',
           link: '/manages/convenience_links'
-        },
-        {
-          text: 'Crafes! 管理',
-          icon: 'fas fa-crown',
-          link: `/manages/crafes`
-        },
-        {
-          text: 'Qrafters 管理',
-          icon: 'fas fa-question',
-          link: `/manages/qrafters`
         }
+        // {
+        //   text: 'Crafes! 管理',
+        //   icon: 'fas fa-crown',
+        //   link: `/manages/crafes`
+        // },
+        // {
+        //   text: 'Qrafters 管理',
+        //   icon: 'fas fa-question',
+        //   link: `/manages/qrafters`
+        // }
       ]
     }
   }

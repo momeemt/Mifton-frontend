@@ -1,43 +1,60 @@
 <template>
-  <div>
-    <NewDropForm />
-    <v-divider></v-divider>
-    <v-bottom-navigation
-      id="switchTimeline"
-      :input-value="true"
-      color="indigo"
-      mandatory
-      shift
-    >
-      <v-btn>
-        <v-icon>fas fa-home</v-icon>
-        <span>ホーム</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>fas fa-retweet</v-icon>
-        <span>リポスト</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>fas fa-user-friends</v-icon>
-        <span>フレンド</span>
-      </v-btn>
-      <v-btn input-value="globalBtn">
-        <v-icon>fas fa-globe</v-icon>
-        <span>グローバル</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>fas fa-filter</v-icon>
-        <span>カスタム</span>
-      </v-btn>
-    </v-bottom-navigation>
-    <DropsContainer :drops="drops" />
+  <div id="bectorHome">
+    <div v-if="checkExistsError()" id="branchErrorContainer">
+      <div class="displayErrorDetail">
+        <p class="errorDetailTitle">
+          <img src="../../assets/tnt.png" />
+          エラーが発生しました
+        </p>
+        <p>
+          大変申し訳ございません。よろしければ、サービス向上のため、エラーの解消にご協力ください。
+        </p>
+        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />
+        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />
+        <p>エラー詳細</p>
+        <p>{{ displayReasonOfError() }}</p>
+      </div>
+    </div>
+    <div v-else>
+      <NewDropForm />
+      <v-divider></v-divider>
+      <v-bottom-navigation
+        id="switchTimeline"
+        :input-value="true"
+        color="indigo"
+        mandatory
+        shift
+      >
+        <v-btn>
+          <v-icon>fas fa-home</v-icon>
+          <span>ホーム</span>
+        </v-btn>
+        <v-btn>
+          <v-icon>fas fa-retweet</v-icon>
+          <span>リポスト</span>
+        </v-btn>
+        <v-btn>
+          <v-icon>fas fa-user-friends</v-icon>
+          <span>フレンド</span>
+        </v-btn>
+        <v-btn input-value="globalBtn">
+          <v-icon>fas fa-globe</v-icon>
+          <span>グローバル</span>
+        </v-btn>
+        <v-btn>
+          <v-icon>fas fa-filter</v-icon>
+          <span>カスタム</span>
+        </v-btn>
+      </v-bottom-navigation>
+      <DropsContainer :drops="resData" />
+    </div>
   </div>
 </template>
 
 <script>
 // import ActionCable from 'actioncable'
-import DropsContainer from '~/components/bector/DropsContainer.vue'
-import NewDropForm from '~/components/NewDropForm.vue'
+import DropsContainer from '~/components/Bector/DropsContainer.vue'
+import NewDropForm from '~/components/Bector/NewDropForm.vue'
 
 // eslint-disable-next-line no-unused-vars
 // const cable = ActionCable.createConsumer('ws:localhost:8080/cable')
@@ -50,26 +67,57 @@ export default {
     DropsContainer,
     NewDropForm
   },
-  data() {
-    return {
-      drops: []
-    }
+  async asyncData({ app }) {
+    const res = await app.$api.index('drops')
+    const resData = res.res
+    const resCode = res.resCode
+    return { resData, resCode }
   },
-  async asyncData(context) {
-    const dropsObject = await context.app.$api.Drops.index()
-    const drops = dropsObject.drops
-    console.log(dropsObject)
-    return { drops }
+  methods: {
+    checkExistsError() {
+      return this.resCode !== 200
+    },
+    displayReasonOfError() {
+      const errorCode = this.resCode
+      if (errorCode === 404) {
+        return 'サーバーがダウンしている可能性があります。開発チームへご連絡ください。'
+      } else {
+        return 'なんらかの原因でエラーが発生しています。もう一度ページを更新したのち、再度この画面が表示されましたら、開発チームへご連絡ください。'
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+#bectorHome,
+#branchErrorContainer {
+  height: 100%;
+}
 #switchTimeline {
   box-shadow: none !important;
   position: sticky;
   top: 50px;
   z-index: 2;
   border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+}
+.displayErrorDetail {
+  text-align: center;
+  display: block;
+  height: 100%;
+  padding-top: 5vh;
+  .errorDetailTitle {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    img {
+      width: 8%;
+      margin-right: 20px;
+    }
+  }
+  .errorDetailImage {
+    width: 20%;
+  }
 }
 </style>

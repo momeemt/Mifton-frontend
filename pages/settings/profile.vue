@@ -28,7 +28,7 @@
         outlined
       ></v-file-input>
       <v-text-field
-        v-model="user.name"
+        v-model="name"
         outlined
         label="ニックネーム"
         placeholder="miftonちゃん"
@@ -84,13 +84,25 @@ export default {
   layout: 'pc/general',
   data() {
     return {
-      user: this.$store.state.currentUser
+      currentUser: this.$store.state.currentUser
+    }
+  },
+  computed: {
+    name: {
+      get() {
+        return this.$store.state.currentUser.name
+      },
+      set(newVal) {
+        this.$store.commit('updateUserName', newVal)
+      }
     }
   },
   methods: {
     saveProfile() {
       this.$axios
-        .$put(`/api/v1/users/${this.user.id}`, { user: this.user })
+        .$put(`/api/v1/users/${this.currentUser.id}`, {
+          user: this.currentUser
+        })
         .catch((err) => {
           console.log(err)
         })

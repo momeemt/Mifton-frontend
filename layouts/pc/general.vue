@@ -20,9 +20,12 @@ import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import Header from '~/components/layouts/Header'
 export default {
   components: { HyperLinkContainer, Header },
+  async asyncData({ store }) {
+    const userId = await store.state.currentUser.id
+    return { userId }
+  },
   data() {
     return {
-      user_id: /* this.$store.state.currentUser.user_id */ 16,
       listDatas: [
         { text: 'Home', icon: 'fas fa-home', link: '/' },
         { text: '通知', icon: 'fas fa-bell', link: '/notification' },
@@ -32,7 +35,7 @@ export default {
         {
           text: 'プロフィール',
           icon: 'far fa-id-card',
-          link: `/users/${this.user_id}`
+          link: `/users/${this.userId}`
         },
         {
           text: 'プロフィールを編集',

@@ -38,7 +38,7 @@
 <script>
 import Header from '~/components/layouts/Header'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
-import NotificationContainer from '~/components/bector/NotificationContainer'
+import NotificationContainer from '~/components/Bector/NotificationContainer'
 
 export default {
   name: 'PCBectorLayout',
@@ -50,15 +50,15 @@ export default {
   data() {
     return {
       listDatas: [
-        { text: 'Home', icon: 'fas fa-home', link: '/bector/home' },
-        { text: '通知', icon: 'far fa-bell', link: '/bector/notifications' },
-        { text: 'トレンド', icon: 'fas fa-fire', link: '/bector/trend' },
+        { text: 'Home', icon: 'fas fa-home', link: '/Bector/home' },
+        { text: '通知', icon: 'far fa-bell', link: '/Bector/notifications' },
+        { text: 'トレンド', icon: 'fas fa-fire', link: '/Bector/trend' },
         {
           text: 'メッセージ',
           icon: 'far fa-envelope',
-          link: '/bector/messages'
+          link: '/Bector/messages'
         },
-        { text: 'リスト', icon: 'fas fa-list', link: '/bector/lists' },
+        { text: 'リスト', icon: 'fas fa-list', link: '/Bector/lists' },
         {
           text: 'ブックマーク',
           icon: 'far fa-bookmark',
@@ -67,7 +67,7 @@ export default {
         {
           text: 'もっと見る',
           icon: 'fas fa-ellipsis-h',
-          link: '/bector/more'
+          link: '/Bector/more'
         },
         { text: 'Miftonに戻る', icon: 'fas fa-chevron-left', link: '/' }
       ]

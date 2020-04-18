@@ -1,0 +1,18 @@
+{
+  "name": "お知らせ",
+  "id": "news",
+  "label": {
+    "title": {
+      "name": "タイトル",
+      "type": "text"
+    },
+    "content": {
+      "name": "内容",
+      "type": "text"
+    }
+  },
+  "data": {
+    "title": "",
+    "content": ""
+  }
+}

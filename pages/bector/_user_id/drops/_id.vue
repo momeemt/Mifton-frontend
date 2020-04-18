@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import DropItem from '~/components/bector/DropItem'
+import DropItem from '~/components/Bector/DropItem'
 import ReturnPageButtonContainer from '~/components/general/ReturnPageButtonContainer'
 export default {
   name: 'IdVue',

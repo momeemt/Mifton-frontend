@@ -6,20 +6,29 @@
       :showing_dialog="showing_dialog"
     />
     <v-list
-      v-for="drop in drops"
-      :key="drop.id"
+      v-for="index in dropCount"
+      :key="index"
       three-line
       class="dropsContainerList"
     >
-      <DropItem :drop="drop" />
+      <DropItem :drop="drops[index - 1]" />
     </v-list>
+    <infinite-loading
+      ref="infiniteLoading"
+      @infinite="infiniteHandler"
+      spinner="spiral"
+    >
+      <span slot="no-more">
+        もう投稿が見つからないようです😭
+      </span>
+    </infinite-loading>
   </v-card>
 </template>
 
 <script>
 import momentTimezone from 'moment-timezone'
-import RemoveDropConfirmDialog from '~/components/bector/RemoveDropConfirmDialog'
-import DropItem from '~/components/bector/DropItem'
+import RemoveDropConfirmDialog from '~/components/Bector/RemoveDropConfirmDialog'
+import DropItem from '~/components/Bector/DropItem'
 
 export default {
   name: 'DropsContainerVue',
@@ -44,7 +53,8 @@ export default {
   data() {
     return {
       expectedRemovingDrop: {},
-      showing_dialog: false
+      showing_dialog: false,
+      dropCount: 0
     }
   },
   methods: {
@@ -54,10 +64,22 @@ export default {
     },
     removeDrop() {
       this.showing_dialog = false
-      this.$api.Drops.delete(this.expectedRemovingDrop)
+      this.$api.delete('drops', this.expectedRemovingDrop)
     },
     cancelRemovingDrop() {
       this.showing_dialog = false
+    },
+    infiniteHandler($state) {
+      // TODO: no-more のカスタマイズが反映されない理由を調べる
+
+      setTimeout(() => {
+        if (this.drops.length > this.dropCount) {
+          this.dropCount += Math.min(10, this.drops.length - this.dropCount)
+          $state.loaded()
+        } else {
+          $state.complete()
+        }
+      }, 1000)
     }
   }
 }

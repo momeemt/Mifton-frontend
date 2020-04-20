@@ -54,7 +54,11 @@ export default {
   plugins: [
     { src: '~plugins/persistedstate.js', ssr: false },
     { src: '~plugins/api.js' },
-    { src: '~/plugins/infiniteloading', ssr: false }
+    { src: '~plugins/infiniteloading', ssr: false },
+    {
+      src: '~plugins/vue-mavon-editor',
+      srr: false
+    }
   ],
   /*
    ** Nuxt.js dev-modules

@@ -2,26 +2,34 @@
   <div id="app">
     <v-app>
       <Header page-type="Bector" />
+      <v-dialog v-model="showingDropDialog" width="700px">
+        <NewDropForm @close="closeDropDialog" @add="emitAddDrop" />
+      </v-dialog>
       <div id="container">
         <div id="leftContent">
-          <v-btn
-            id="drop-button"
-            class="ma-2 blue white--text darken-3 py-0"
-            rounded
-            depressed
-            width="60%"
-          >
-            ドロップする
-          </v-btn>
-          <v-btn
-            id="topic-button"
-            class="ma-2 indigo white--text darken-3 py-0"
-            rounded
-            depressed
-            width="60%"
-          >
-            トピックを書く
-          </v-btn>
+          <div id="buttonsContainer">
+            <div class="buttonWrapper">
+              <v-btn
+                id="drop-button"
+                class="ma-2 blue white--text darken-3 py-0"
+                rounded
+                depressed
+                @click="openDropDialog"
+              >
+                ドロップする
+              </v-btn>
+            </div>
+            <div class="buttonWrapper">
+              <v-btn
+                id="topic-button"
+                class="ma-2 indigo white--text darken-3 py-0"
+                rounded
+                depressed
+              >
+                トピックを書く
+              </v-btn>
+            </div>
+          </div>
           <HyperLinkContainer :listDatas="listDatas" page-type="Bector" />
         </div>
         <div id="middleContent">
@@ -39,26 +47,28 @@
 import Header from '~/components/layouts/Header'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import NotificationContainer from '~/components/Bector/NotificationContainer'
+import NewDropForm from '~/components/Bector/NewDropForm'
 
 export default {
   name: 'PCBectorLayout',
   components: {
     Header,
     HyperLinkContainer,
-    NotificationContainer
+    NotificationContainer,
+    NewDropForm
   },
   data() {
     return {
       listDatas: [
-        { text: 'Home', icon: 'fas fa-home', link: '/Bector/home' },
-        { text: '通知', icon: 'far fa-bell', link: '/Bector/notifications' },
-        { text: 'トレンド', icon: 'fas fa-fire', link: '/Bector/trend' },
+        { text: 'Home', icon: 'fas fa-home', link: '/bector/home' },
+        { text: '通知', icon: 'far fa-bell', link: '/bector/notifications' },
+        { text: 'トレンド', icon: 'fas fa-fire', link: '/bector/trend' },
         {
           text: 'メッセージ',
           icon: 'far fa-envelope',
-          link: '/Bector/messages'
+          link: '/bector/messages'
         },
-        { text: 'リスト', icon: 'fas fa-list', link: '/Bector/lists' },
+        { text: 'リスト', icon: 'fas fa-list', link: '/bector/lists' },
         {
           text: 'ブックマーク',
           icon: 'far fa-bookmark',
@@ -67,10 +77,23 @@ export default {
         {
           text: 'もっと見る',
           icon: 'fas fa-ellipsis-h',
-          link: '/Bector/more'
+          link: '/bector/more'
         },
         { text: 'Miftonに戻る', icon: 'fas fa-chevron-left', link: '/' }
-      ]
+      ],
+      showingDropDialog: false
+    }
+  },
+  methods: {
+    openDropDialog() {
+      this.showingDropDialog = true
+    },
+    closeDropDialog() {
+      this.showingDropDialog = false
+    },
+    emitAddDrop(drop) {
+      console.log(drop)
+      this.$nuxt.$emit('addDrop', drop)
     }
   }
 }
@@ -100,7 +123,19 @@ export default {
   height: calc(100vh - 50px);
   border-left: rgba(0, 0, 0, 0.12) solid 1px;
 }
+#buttonsContainer {
+  margin-top: 40px;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10px;
+}
+#topic-button,
 #drop-button {
-  margin: auto;
+  display: block;
+  width: 75%;
+  height: 40px;
 }
 </style>

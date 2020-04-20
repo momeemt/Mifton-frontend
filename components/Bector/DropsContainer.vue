@@ -54,7 +54,7 @@ export default {
     return {
       expectedRemovingDrop: {},
       showing_dialog: false,
-      dropCount: 0
+      dropCount: Math.min(20, this.drops.length)
     }
   },
   methods: {
@@ -70,8 +70,6 @@ export default {
       this.showing_dialog = false
     },
     infiniteHandler($state) {
-      // TODO: no-more のカスタマイズが反映されない理由を調べる
-
       setTimeout(() => {
         if (this.drops.length > this.dropCount) {
           this.dropCount += Math.min(10, this.drops.length - this.dropCount)

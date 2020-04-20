@@ -14,14 +14,17 @@ export default ({ app }, inject) => {
       return { res, resCode }
     },
     async create(modelName, data) {
-      await app.$axios
+      let resCode
+      const res = await app.$axios
         .$post(`/api/v1/${modelName}`, data)
         .then((res) => {
+          resCode = 200
           return res
         })
         .catch((err) => {
-          return err
+          resCode = err.response.status
         })
+      return { res, resCode }
     },
     async delete(modelName, data) {
       await app.$axios

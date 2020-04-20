@@ -1,6 +1,6 @@
 <template>
   <div id="bectorHome">
-    <div v-if="checkExistsError()" id="branchErrorContainer">
+    <div id="branchErrorContainer" v-if="checkExistsError()">
       <div class="displayErrorDetail">
         <p class="errorDetailTitle">
           <img src="../../assets/tnt.png" />
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div v-else>
-      <NewDropForm />
+      <NewDropForm @add="addNewDrop" />
       <v-divider></v-divider>
       <v-bottom-navigation
         id="switchTimeline"
@@ -73,6 +73,12 @@ export default {
     const resCode = res.resCode
     return { resData, resCode }
   },
+  mounted() {
+    this.$nuxt.$on('addDrop', this.addNewDrop)
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('addDrop')
+  },
   methods: {
     checkExistsError() {
       return this.resCode !== 200
@@ -84,6 +90,9 @@ export default {
       } else {
         return 'なんらかの原因でエラーが発生しています。もう一度ページを更新したのち、再度この画面が表示されましたら、開発チームへご連絡ください。'
       }
+    },
+    addNewDrop(drop) {
+      this.resData.unshift(drop)
     }
   }
 }

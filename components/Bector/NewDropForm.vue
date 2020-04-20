@@ -48,6 +48,9 @@
           ドロップする
         </v-btn>
       </v-card-actions>
+      <v-alert v-show="showingErrorAlert" dense outlined type="error">
+        投稿に失敗しました。不正な操作が行われたか、サーバーがダウンしている可能性があります。Mifton運営にご連絡ください。
+      </v-alert>
     </v-flex>
   </v-card>
 </template>
@@ -83,13 +86,14 @@ export default {
     return {
       drop: {
         content: '',
-        user_id: ''
+        user_id: -1
       },
       openEmoji: false,
       is_dialog_show: false,
       max_char_rule: [
         (v) => v.length <= 140 || '140字以上のドロップはできません！'
-      ]
+      ],
+      showingErrorAlert: false
     }
   },
   computed: {
@@ -98,28 +102,23 @@ export default {
     }
   },
   methods: {
-    addDrop() {
+    async addDrop() {
       this.drop.user_id = this.$store.state.currentUser.id
-      this.$axios
-        .$post('/api/v1/drops', {
-          content: this.drop.content,
-          user_id: this.drop.user_id
-        })
-        .then((res) => {
-          res.user = {
-            name: this.$store.state.currentUser.name,
-            user_id: this.$store.state.currentUser.user_id,
-            id: this.$store.state.currentUser.id
-          }
-          this.$parent.drops.unshift(res)
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      this.removetext()
+      const res = await this.$api.create('drops', this.drop)
+      const resCode = res.resCode
+      const drop = {
+        ...res.res,
+        user: this.$store.getters.currentUser
+      }
+      if (resCode === 200) {
+        this.removeText()
+        this.$emit('add', drop)
+        this.$emit('close')
+      } else {
+        this.showingErrorAlert = true
+      }
     },
-    removetext() {
+    removeText() {
       this.drop.content = ''
     },
     addEmoji(emoji) {

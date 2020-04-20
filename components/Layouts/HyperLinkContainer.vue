@@ -57,9 +57,6 @@ export default {
     }
   },
   methods: {
-    transitionPage(pageType) {
-      this.$emit('transitionPage', pageType)
-    },
     selectListColor() {
       if (this.pageType === 'Bector') {
         return 'indigo'

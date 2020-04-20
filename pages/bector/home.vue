@@ -99,6 +99,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#topicEditor {
+  box-shadow: none !important;
+}
 #bectorHome,
 #branchErrorContainer {
   height: 100%;

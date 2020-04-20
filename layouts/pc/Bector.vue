@@ -5,6 +5,9 @@
       <v-dialog v-model="showingDropDialog" width="700px">
         <NewDropForm @close="closeDropDialog" @add="emitAddDrop" />
       </v-dialog>
+      <v-dialog v-model="showingTopicDialog" width="1000px">
+        <NewTopicForm />
+      </v-dialog>
       <div id="container">
         <div id="leftContent">
           <div id="buttonsContainer">
@@ -12,9 +15,9 @@
               <v-btn
                 id="drop-button"
                 class="ma-2 blue white--text darken-3 py-0"
+                @click="openDropDialog"
                 rounded
                 depressed
-                @click="openDropDialog"
               >
                 ドロップする
               </v-btn>
@@ -23,6 +26,7 @@
               <v-btn
                 id="topic-button"
                 class="ma-2 indigo white--text darken-3 py-0"
+                @click="openTopicDialog"
                 rounded
                 depressed
               >
@@ -48,6 +52,7 @@ import Header from '~/components/layouts/Header'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import NotificationContainer from '~/components/Bector/NotificationContainer'
 import NewDropForm from '~/components/Bector/NewDropForm'
+import NewTopicForm from '~/components/Bector/NewTopicForm'
 
 export default {
   name: 'PCBectorLayout',
@@ -55,7 +60,8 @@ export default {
     Header,
     HyperLinkContainer,
     NotificationContainer,
-    NewDropForm
+    NewDropForm,
+    NewTopicForm
   },
   data() {
     return {
@@ -81,7 +87,8 @@ export default {
         },
         { text: 'Miftonに戻る', icon: 'fas fa-chevron-left', link: '/' }
       ],
-      showingDropDialog: false
+      showingDropDialog: false,
+      showingTopicDialog: false
     }
   },
   methods: {
@@ -94,6 +101,9 @@ export default {
     emitAddDrop(drop) {
       console.log(drop)
       this.$nuxt.$emit('addDrop', drop)
+    },
+    openTopicDialog() {
+      this.showingTopicDialog = true
     }
   }
 }

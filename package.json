@@ -28,6 +28,7 @@
     "actioncable": "^5.2.4-1",
     "axios": "latest",
     "emoji-mart-vue": "^2.6.6",
+    "mavon-editor": "^2.8.3",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "nuxt": "^2.0.0",

@@ -49,7 +49,7 @@
         </v-btn>
       </v-card-actions>
       <v-alert v-show="showingErrorAlert" dense outlined type="error">
-        投稿に失敗しました。不正な操作が行われたか、サーバーがダウンしている可能性があります。Mifton運営にご連絡ください。
+        ドロップに失敗しました。不正な操作が行われたか、サーバーがダウンしている可能性があります。Mifton運営にご連絡ください。
       </v-alert>
     </v-flex>
   </v-card>

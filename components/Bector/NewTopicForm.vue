@@ -1,6 +1,11 @@
 <template>
   <v-card>
     <v-card-title>トピックを投稿する</v-card-title>
+    <v-card-actions>
+      <v-alert v-show="showingErrorAlert" dense outlined type="error">
+        投稿に失敗しました。不正な操作が行われたか、サーバーがダウンしている可能性があります。Mifton運営にご連絡ください。
+      </v-alert>
+    </v-card-actions>
     <v-text-field placeholder="タイトル" v-model="topic.title" flat rounded />
     <no-ssr>
       <mavon-editor
@@ -35,6 +40,7 @@ export default {
         title: '',
         content: ''
       },
+      showingErrorAlert: false,
       markdownOption: {
         bold: true,
         italic: true,

@@ -6,7 +6,7 @@
         <NewDropForm @close="closeDropDialog" @add="emitAddDrop" />
       </v-dialog>
       <v-dialog v-model="showingTopicDialog" width="1000px">
-        <NewTopicForm />
+        <NewTopicForm @close="closeTopicDialog" />
       </v-dialog>
       <div id="container">
         <div id="leftContent">
@@ -104,6 +104,9 @@ export default {
     },
     openTopicDialog() {
       this.showingTopicDialog = true
+    },
+    closeTopicDialog() {
+      this.showingTopicDialog = false
     }
   }
 }

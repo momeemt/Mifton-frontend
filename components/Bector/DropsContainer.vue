@@ -11,7 +11,12 @@
       three-line
       class="dropsContainerList"
     >
-      <DropItem :drop="drops[index - 1]" />
+      <div v-if="posts[index - 1].type === 'drop'">
+        <DropItem :drop="posts[index - 1]" />
+      </div>
+      <div v-else>
+        <TopicItem :topic="posts[index - 1]" />
+      </div>
     </v-list>
     <infinite-loading
       ref="infiniteLoading"
@@ -29,12 +34,14 @@
 import momentTimezone from 'moment-timezone'
 import RemoveDropConfirmDialog from '~/components/Bector/RemoveDropConfirmDialog'
 import DropItem from '~/components/Bector/DropItem'
+import TopicItem from '~/components/Bector/TopicItem'
 
 export default {
   name: 'DropsContainerVue',
   components: {
     RemoveDropConfirmDialog,
-    DropItem
+    DropItem,
+    TopicItem
   },
   filters: {
     moment(date) {
@@ -45,7 +52,7 @@ export default {
     }
   },
   props: {
-    drops: {
+    posts: {
       type: Array,
       required: true
     }
@@ -54,7 +61,7 @@ export default {
     return {
       expectedRemovingDrop: {},
       showing_dialog: false,
-      dropCount: Math.min(20, this.drops.length)
+      dropCount: Math.min(20, this.posts.length)
     }
   },
   methods: {
@@ -71,8 +78,8 @@ export default {
     },
     infiniteHandler($state) {
       setTimeout(() => {
-        if (this.drops.length > this.dropCount) {
-          this.dropCount += Math.min(10, this.drops.length - this.dropCount)
+        if (this.posts.length > this.dropCount) {
+          this.dropCount += Math.min(10, this.posts.length - this.dropCount)
           $state.loaded()
         } else {
           $state.complete()

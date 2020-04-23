@@ -30,23 +30,23 @@
           <span>ホーム</span>
         </v-btn>
         <v-btn>
-          <v-icon>fas fa-retweet</v-icon>
-          <span>リポスト</span>
+          <v-icon>fas fa-user-friends</v-icon>
+          <span>相互</span>
         </v-btn>
         <v-btn>
-          <v-icon>fas fa-user-friends</v-icon>
-          <span>フレンド</span>
+          <v-icon>fas fa-eye-dropper</v-icon>
+          <span>ドロップ</span>
         </v-btn>
-        <v-btn input-value="globalBtn">
+        <v-btn>
+          <v-icon>fas fa-newspaper</v-icon>
+          <span>トピック</span>
+        </v-btn>
+        <v-btn>
           <v-icon>fas fa-globe</v-icon>
           <span>グローバル</span>
         </v-btn>
-        <v-btn>
-          <v-icon>fas fa-filter</v-icon>
-          <span>カスタム</span>
-        </v-btn>
       </v-bottom-navigation>
-      <DropsContainer :drops="resData" />
+      <DropsContainer :posts="resData" />
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
     NewDropForm
   },
   async asyncData({ app }) {
-    const res = await app.$api.index('drops')
+    const res = await app.$api.index('posts')
     const resData = res.res
     const resCode = res.resCode
     return { resData, resCode }

@@ -3,7 +3,6 @@
     <div id="branchErrorContainer" v-if="checkExistsError()">
       <div class="displayErrorDetail">
         <p class="errorDetailTitle">
-          <img src="../../assets/tnt.png" />
           エラーが発生しました
         </p>
         <p>
@@ -25,7 +24,7 @@
         mandatory
         shift
       >
-        <v-btn>
+        <v-btn @click="switchTimeline = 'home'">
           <v-icon>fas fa-home</v-icon>
           <span>ホーム</span>
         </v-btn>
@@ -33,11 +32,11 @@
           <v-icon>fas fa-user-friends</v-icon>
           <span>相互</span>
         </v-btn>
-        <v-btn>
+        <v-btn @click="switchTimeline = 'drops'">
           <v-icon>fas fa-eye-dropper</v-icon>
           <span>ドロップ</span>
         </v-btn>
-        <v-btn>
+        <v-btn @click="switchTimeline = 'topics'">
           <v-icon>fas fa-newspaper</v-icon>
           <span>トピック</span>
         </v-btn>
@@ -46,7 +45,7 @@
           <span>グローバル</span>
         </v-btn>
       </v-bottom-navigation>
-      <DropsContainer :posts="resData" />
+      <DropsContainer :posts="getTimelineData()" />
     </div>
   </div>
 </template>
@@ -67,11 +66,22 @@ export default {
     DropsContainer,
     NewDropForm
   },
+  data() {
+    return {
+      switchTimeline: 'home'
+    }
+  },
   async asyncData({ app }) {
     const res = await app.$api.index('posts')
-    const resData = res.res
+    const postsData = res.res
     const resCode = res.resCode
-    return { resData, resCode }
+    const dropsData = postsData.filter(function(post) {
+      return post.type === 'drop'
+    })
+    const topicsData = postsData.filter(function(post) {
+      return post.type === 'topic'
+    })
+    return { postsData, resCode, dropsData, topicsData }
   },
   mounted() {
     this.$nuxt.$on('addDrop', this.addNewDrop)
@@ -93,6 +103,16 @@ export default {
     },
     addNewDrop(drop) {
       this.resData.unshift(drop)
+    },
+    getTimelineData() {
+      const option = this.switchTimeline
+      if (option === 'home') {
+        return this.postsData
+      } else if (option === 'drops') {
+        return this.dropsData
+      } else if (option === 'topics') {
+        return this.topicsData
+      }
     }
   }
 }

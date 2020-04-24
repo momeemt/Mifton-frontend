@@ -1,11 +1,13 @@
 <template>
   <v-app>
-    <Header page-type="General" />
     <div v-if="error.statusCode === 404">
+      <Header page-type="General" />
       <img id="img404NotFound" src="../assets/404.jpeg" />
     </div>
     <div v-else>
-      <p>エラーが起きました</p>
+      <p>申し訳ございません。</p>
+      <h1>エラーが発生しました。</h1>
+      <nuxt-link to="/">Homeへ</nuxt-link>
     </div>
   </v-app>
 </template>

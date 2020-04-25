@@ -37,14 +37,17 @@ export default ({ app }, inject) => {
         })
     },
     async show(modelName, id) {
-      await app.$axios
+      let resCode
+      const res = await app.$axios
         .$get(`/api/v1/${modelName}/${id}`)
         .then((res) => {
+          resCode = 200
           return res
         })
         .catch((err) => {
-          return err
+          resCode = err.response.status
         })
+      return { res, resCode }
     },
     async update(modelName, data) {
       await app.$axios

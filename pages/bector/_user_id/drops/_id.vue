@@ -2,7 +2,7 @@
   <div>
     <ReturnPageButtonContainer />
     <v-list id="dropItemBox" flat disabled>
-      <DropItem :drop="drop" />
+      <DropItem :drop="dropData" />
     </v-list>
     <div>こっちにコメントを取得して貼り付けるコンポーネントを書く</div>
   </div>
@@ -27,18 +27,14 @@ export default {
   },
   async asyncData({ route, app }) {
     const { id } = route.params
-    // eslint-disable-next-line camelcase
-    // const { user_id } = route.params
-    const dropObject = await app.$api.Drops.show(id)
-    const drop = dropObject.drop
-    // eslint-disable-next-line camelcase
-    // if (drop.user_id !== user_id) {
-    //   return app.$nuxt.error({
-    //     statusCode: 400,
-    //     message: 'not exist'
-    //   })
-    // }
-    return { drop }
+    const userId = route.params.user_id
+    const res = await app.$api.show('drops', id)
+    const dropData = res.res
+    const resCode = res.resCode
+    if (dropData.user.user_id !== userId) {
+      console.warn('不一致')
+    }
+    return { dropData, resCode }
   }
 }
 </script>

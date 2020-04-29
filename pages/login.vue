@@ -2,65 +2,7 @@
   <div id="loginPage">
     <Header page-type="General" />
     <div id="loginCardContainer">
-      <v-card id="loginCard" width="60%" height="60%">
-        <v-card-title>ログイン</v-card-title>
-        <v-card-content>
-          <v-alert v-show="unAuthorizedError" dense outlined type="error">
-            メールアドレス認証が完了していません。メールボックスを確認してください。
-          </v-alert>
-          <v-alert
-            v-show="unprocessableEntityError"
-            dense
-            outlined
-            type="error"
-          >
-            メールアドレスかパスワードが間違っています。もう一度確認してください。
-          </v-alert>
-          <v-text-field
-            v-model="user_id"
-            label="ユーザーID"
-            outlined
-            rounded
-            clearable
-            color="#ec6d51"
-            class="userIDTextField"
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            type="password"
-            label="パスワード"
-            rounded
-            outlined
-            clearable
-            color="#ec6d51"
-            class="passwordTextField"
-          ></v-text-field>
-          <v-checkbox label="ログイン情報を保存する"></v-checkbox>
-        </v-card-content>
-        <v-card-actions>
-          <nuxt-link to="/signup">
-            アカウントを作成
-          </nuxt-link>
-          <v-spacer></v-spacer>
-          <v-btn
-            @click="twitterLogin"
-            rounded
-            color="#00acee"
-            class="twitterLoginBtn white--text"
-          >
-            <v-icon left>fab fa-twitter</v-icon>
-            Twitterでログイン
-          </v-btn>
-          <v-btn
-            @click="login"
-            color="#ec6d51"
-            class="loginBtn white--text"
-            rounded
-          >
-            ログインする
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <LoginCard />
     </div>
     <Footer></Footer>
   </div>
@@ -69,9 +11,11 @@
 <script>
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/Footer'
+import LoginCard from '~/components/Organisms/LoginCard'
 
 export default {
   components: {
+    LoginCard,
     Header,
     Footer
   },
@@ -95,7 +39,7 @@ export default {
       const resCode = res.resCode
       if (resCode === 200) {
         this.$store.commit('login', resData)
-        this.$router.push('/')
+        await this.$router.push('/')
       } else if (resCode === 401) {
         // 認証なし
         this.unAuthorizedError = true
@@ -123,8 +67,8 @@ export default {
   height: calc(100vh - 100px);
 
   #loginCard {
-    padding: 2vh 2vw;
-    border-radius: 20px;
+    height: 60%;
+    width: 60%;
   }
 }
 </style>

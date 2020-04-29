@@ -8,30 +8,7 @@
         <p id="dsc_line3">Miftonは、従来のSNS・サービスよりも</p>
         <p id="dsc_line4">素敵な体験・交流を目指すために開発されました</p>
       </div>
-      <v-card shaped height="75%" width="50%">
-        <v-card-title>Miftonに参加する</v-card-title>
-        <v-divider></v-divider>
-        <v-row>
-          <v-col>
-            <v-card-text>ユーザーID</v-card-text>
-            <v-text-field></v-text-field>
-          </v-col>
-          <v-col>
-            <v-card-text>メールアドレス</v-card-text>
-            <v-text-field></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-card-text>パスワード</v-card-text>
-            <v-text-field></v-text-field>
-          </v-col>
-          <v-col>
-            <v-card-text>パスワード(確認)</v-card-text>
-            <v-text-field></v-text-field>
-          </v-col>
-        </v-row>
-      </v-card>
+      <LoginCard />
     </div>
     <div class="serviceCard">
       <v-card class="mx-auto" max-width="700">
@@ -114,9 +91,8 @@
             結果に応じて付くレートが技術力の指標になります。
           </div>
         </v-card-text>
-
         <v-card-actions>
-          <v-btn color="green" text>
+          <v-btn color="green" text to="/crafes">
             Crafesをのぞいてみる
           </v-btn>
         </v-card-actions>
@@ -191,9 +167,11 @@
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/Footer'
 import SubFooter from '~/components/layouts/subFooter'
+import LoginCard from '~/components/Organisms/LoginCard'
 
 export default {
   components: {
+    LoginCard,
     Header,
     Footer,
     SubFooter
@@ -276,5 +254,9 @@ export default {
   #topDescript {
     padding-top: 18%;
   }
+}
+#loginCard {
+  height: 85%;
+  width: 50%;
 }
 </style>

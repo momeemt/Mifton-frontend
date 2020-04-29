@@ -39,7 +39,6 @@ export default {
     const user = userObject.user
     const userJob = user.user_job
     const optionalUserData = user.optional_user_data
-    console.log(user)
     return { user, userJob, optionalUserData }
   }
 }

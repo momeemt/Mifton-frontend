@@ -78,12 +78,9 @@ export default {
       ]
     }
   },
+  // TODO: エラーハンドリングを追加する
   async asyncData({ $axios }) {
-    const linkDatas = await $axios
-      .$get('/api/v1/convenience_links')
-      .catch((err) => {
-        console.log(err)
-      })
+    const linkDatas = await $axios.$get('/api/v1/convenience_links')
     return { linkDatas }
   }
 }

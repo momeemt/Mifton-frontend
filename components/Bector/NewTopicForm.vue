@@ -6,7 +6,7 @@
         投稿に失敗しました。不正な操作が行われたか、サーバーがダウンしている可能性があります。Mifton運営にご連絡ください。
       </v-alert>
     </v-card-actions>
-    <v-text-field placeholder="タイトル" v-model="topic.title" flat rounded />
+    <v-text-field v-model="topic.title" placeholder="タイトル" flat rounded />
     <no-ssr>
       <mavon-editor
         id="topicEditor"

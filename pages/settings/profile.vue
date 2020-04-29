@@ -98,14 +98,11 @@ export default {
     }
   },
   methods: {
+    // TODO: エラーハンドリングを追加する
     saveProfile() {
-      this.$axios
-        .$put(`/api/v1/users/${this.currentUser.id}`, {
-          user: this.currentUser
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.$axios.$put(`/api/v1/users/${this.currentUser.id}`, {
+        user: this.currentUser
+      })
     }
   }
 }

@@ -1,274 +1,189 @@
 <template>
   <div id="topPage">
     <Header page-type="General" />
-    <template v-if="$store.getters.is_logged_in">
-      <div id="flex">
-        <v-overlay v-show="showOverlay">
-          <v-stepper>
-            <v-stepper-header>
-              <v-stepper-step
-                :complete="e1 > 1"
-                color="orange darken-3"
-                step="1"
-              >
-                ようこそ！
-              </v-stepper-step>
-              <v-divider></v-divider>
-              <v-stepper-step :complete="e1 > 2" step="2">
-                Name of step 2
-              </v-stepper-step>
-              <v-divider></v-divider>
-              <v-stepper-step step="3">Name of step 3</v-stepper-step>
-            </v-stepper-header>
-
-            <v-stepper-items>
-              <v-stepper-content step="1">
-                <p>Miftonへようこそ！</p>
-                <p>これからMiftonの使い方を簡単にご紹介します。</p>
-                <v-card class="mb-12" color="grey lighten-1" height="200px">
-                </v-card>
-                <v-btn @click="e1 = 2" color="orange darken-3">
-                  Continue
-                </v-btn>
-
-                <v-btn @click="showOverlay = false" text
-                  >閉じる（開発用）</v-btn
-                >
-              </v-stepper-content>
-
-              <v-stepper-content step="2">
-                <v-card
-                  class="mb-12"
-                  color="grey lighten-1"
-                  height="200px"
-                ></v-card>
-
-                <v-btn @click="e1 = 3" color="primary">
-                  Continue
-                </v-btn>
-
-                <v-btn text>Cancel</v-btn>
-              </v-stepper-content>
-
-              <v-stepper-content step="3">
-                <v-card
-                  class="mb-12"
-                  color="grey lighten-1"
-                  height="200px"
-                ></v-card>
-
-                <v-btn @click="e1 = 1" color="primary">
-                  Continue
-                </v-btn>
-
-                <v-btn text>Cancel</v-btn>
-              </v-stepper-content>
-            </v-stepper-items>
-          </v-stepper>
-        </v-overlay>
-        <div id="leftContent">
-          <HyperLinkContainer :listDatas="listDatas" page-type="General" />
-        </div>
-        <div id="middleContent">
-          <template>
-            <div>
-              yay
-            </div>
-          </template>
-        </div>
-        <div id="rightContent">
-          <p>
-            ユーザーをワールドに招待したりとかIDとかポートとかを共有できる機能を作る
-          </p>
-          <p>Bectorにも同時投稿できるみたいな？</p>
-        </div>
+    <div id="topSection">
+      <div id="topDescript">
+        <p id="dsc_line1">Minecraftを</p>
+        <p id="dsc_line2">もっと面白くもっと便利に</p>
+        <p id="dsc_line3">Miftonは、従来のSNS・サービスよりも</p>
+        <p id="dsc_line4">素敵な体験・交流を目指すために開発されました</p>
       </div>
-    </template>
-    <template v-else>
-      <div id="topSection">
-        <div id="topDescript">
-          <p id="dsc_line1">Minecraftを</p>
-          <p id="dsc_line2">もっと面白くもっと便利に</p>
-          <p id="dsc_line3">Miftonは、従来のSNS・サービスよりも</p>
-          <p id="dsc_line4">素敵な体験・交流を目指すために開発されました</p>
-        </div>
-        <v-card shaped height="75%" width="50%">
-          <v-card-title>Miftonに参加する</v-card-title>
-          <v-divider></v-divider>
-          <v-row>
-            <v-col>
-              <v-card-text>ユーザーID</v-card-text>
-              <v-text-field></v-text-field>
-            </v-col>
-            <v-col>
-              <v-card-text>メールアドレス</v-card-text>
-              <v-text-field></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-card-text>パスワード</v-card-text>
-              <v-text-field></v-text-field>
-            </v-col>
-            <v-col>
-              <v-card-text>パスワード(確認)</v-card-text>
-              <v-text-field></v-text-field>
-            </v-col>
-          </v-row>
-        </v-card>
-      </div>
-      <div class="serviceCard">
-        <v-card class="mx-auto" max-width="700">
-          <v-img
-            class="white--text align-end"
-            height="200px"
-            src="https://mifton.xyz/bector-top.jpg"
-          >
-            <v-card-title>Bector</v-card-title>
-          </v-img>
+      <v-card shaped height="75%" width="50%">
+        <v-card-title>Miftonに参加する</v-card-title>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-text>ユーザーID</v-card-text>
+            <v-text-field></v-text-field>
+          </v-col>
+          <v-col>
+            <v-card-text>メールアドレス</v-card-text>
+            <v-text-field></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-card-text>パスワード</v-card-text>
+            <v-text-field></v-text-field>
+          </v-col>
+          <v-col>
+            <v-card-text>パスワード(確認)</v-card-text>
+            <v-text-field></v-text-field>
+          </v-col>
+        </v-row>
+      </v-card>
+    </div>
+    <div class="serviceCard">
+      <v-card class="mx-auto" max-width="700">
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          src="https://mifton.xyz/bector-top.jpg"
+        >
+          <v-card-title>Bector</v-card-title>
+        </v-img>
 
-          <v-card-subtitle class="pb-0">最適化されたSNS</v-card-subtitle>
+        <v-card-subtitle class="pb-0">最適化されたSNS</v-card-subtitle>
 
-          <v-card-text class="text--primary">
-            <div>
-              Miftonが提供するSNS「Bector」では、今までにないソーシャル体験を味わえます。
-            </div>
-            <div>
-              投稿はもちろん、トピックを書いて技術を広めたり、日記を書いたり。
-            </div>
-            <div>
-              様々なMinecraftメディアの情報をキャッチして、もっとMinecraftに詳しくなりましょう。
-            </div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn color="blue" text>
-              Bectorをのぞいてみる
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </div>
-      <div class="serviceCard">
-        <v-card class="mx-auto" max-width="700">
-          <v-img class="white--text align-end" height="200px" src="iceland.png">
-            <v-card-title>Qrafters</v-card-title>
-          </v-img>
-
-          <v-card-subtitle class="pb-0">疑問解決サービス</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>
-              疑問解決サービス「Qrafters」で、疑問を一気に解決しましょう。
-            </div>
-            <div>
-              他のユーザーに質問したり、過去の質問からヒントを得たりすることができます。
-            </div>
-            <div>
-              友達の疑問を解決して、ポイントで自分の作品を広告することも。
-            </div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn color="red" text>
-              Qrafetrsをのぞいてみる
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </div>
-      <div class="serviceCard">
-        <v-card class="mx-auto" max-width="700">
-          <v-img
-            class="white--text align-end"
-            height="200px"
-            src="https://mifton.xyz/crafes-top.jpg"
-          >
-            <v-card-title>Crafes!</v-card-title>
-          </v-img>
-
-          <v-card-subtitle class="pb-0">大会開催サービス</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>
-              技術を磨きたいときは、Minecraftの大会「Crafes!」に参加してみましょう。
-            </div>
-            <div>
-              Crafes!は日本初の競技Minecraftのサービスです。
-            </div>
-            <div>
-              結果に応じて付くレートが技術力の指標になります。
-            </div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn color="green" text>
-              Crafesをのぞいてみる
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </div>
-      <div id="recommendSignup">
-        <div id="recSignupContainer">
-          <h2 class="text-center">
-            Miftonは無料でご利用いただけます。今まで知らなかった新たな世界に飛び込みましょう。
-          </h2>
-          <v-row>
-            <v-col>
-              <p>ユーザーID</p>
-              <v-text-field
-                v-model="user.user_id"
-                solo
-                placeholder="希望するユーザーID"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <p>ニックネーム</p>
-              <v-text-field
-                v-model="user.name"
-                solo
-                placeholder="ニックネームを決めましょう"
-              >
-              </v-text-field>
-            </v-col>
-            <v-col>
-              <p>メールアドレス</p>
-              <v-text-field
-                v-model="user.email"
-                solo
-                placeholder="example@mifton.app"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <p>パスワード</p>
-              <v-text-field
-                v-model="user.password"
-                solo
-                type="password"
-                placeholder="パスワードを決めましょう"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <p>パスワード(確認)</p>
-              <v-text-field
-                v-model="user.password_confirmation"
-                solo
-                type="password"
-                placeholder="もう一度チェック"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <div class="text-center">
-            <v-btn @click="registerUser" rounded width="70%">登録する</v-btn>
+        <v-card-text class="text--primary">
+          <div>
+            Miftonが提供するSNS「Bector」では、今までにないソーシャル体験を味わえます。
           </div>
-          <small>
-            登録する前に利用規約とプライバシーポリシーを読んでください。登録すると、これらに同意したとみなされます。
-          </small>
+          <div>
+            投稿はもちろん、トピックを書いて技術を広めたり、日記を書いたり。
+          </div>
+          <div>
+            様々なMinecraftメディアの情報をキャッチして、もっとMinecraftに詳しくなりましょう。
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn color="blue" text to="/bector" nuxt>
+            Bectorをのぞいてみる
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+    <div class="serviceCard">
+      <v-card class="mx-auto" max-width="700">
+        <v-img class="white--text align-end" height="200px" src="iceland.png">
+          <v-card-title>Qrafters</v-card-title>
+        </v-img>
+
+        <v-card-subtitle class="pb-0">疑問解決サービス</v-card-subtitle>
+
+        <v-card-text class="text--primary">
+          <div>
+            疑問解決サービス「Qrafters」で、疑問を一気に解決しましょう。
+          </div>
+          <div>
+            他のユーザーに質問したり、過去の質問からヒントを得たりすることができます。
+          </div>
+          <div>
+            友達の疑問を解決して、ポイントで自分の作品を広告することも。
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn color="red" text>
+            Qrafetrsをのぞいてみる
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+    <div class="serviceCard">
+      <v-card class="mx-auto" max-width="700">
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          src="https://mifton.xyz/crafes-top.jpg"
+        >
+          <v-card-title>Crafes!</v-card-title>
+        </v-img>
+
+        <v-card-subtitle class="pb-0">大会開催サービス</v-card-subtitle>
+
+        <v-card-text class="text--primary">
+          <div>
+            技術を磨きたいときは、Minecraftの大会「Crafes!」に参加してみましょう。
+          </div>
+          <div>
+            Crafes!は日本初の競技Minecraftのサービスです。
+          </div>
+          <div>
+            結果に応じて付くレートが技術力の指標になります。
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn color="green" text>
+            Crafesをのぞいてみる
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+    <div id="recommendSignup">
+      <div id="recSignupContainer">
+        <h2 class="text-center">
+          Miftonは無料でご利用いただけます。今まで知らなかった新たな世界に飛び込みましょう。
+        </h2>
+        <v-row>
+          <v-col>
+            <p>ユーザーID</p>
+            <v-text-field
+              v-model="user.user_id"
+              solo
+              placeholder="希望するユーザーID"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <p>ニックネーム</p>
+            <v-text-field
+              v-model="user.name"
+              solo
+              placeholder="ニックネームを決めましょう"
+            >
+            </v-text-field>
+          </v-col>
+          <v-col>
+            <p>メールアドレス</p>
+            <v-text-field
+              v-model="user.email"
+              solo
+              placeholder="example@mifton.app"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <p>パスワード</p>
+            <v-text-field
+              v-model="user.password"
+              solo
+              type="password"
+              placeholder="パスワードを決めましょう"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <p>パスワード(確認)</p>
+            <v-text-field
+              v-model="user.password_confirmation"
+              solo
+              type="password"
+              placeholder="もう一度チェック"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <div class="text-center">
+          <v-btn @click="registerUser" rounded width="70%">登録する</v-btn>
         </div>
+        <small>
+          登録する前に利用規約とプライバシーポリシーを読んでください。登録すると、これらに同意したとみなされます。
+        </small>
       </div>
-      <SubFooter />
-      <Footer />
-    </template>
+    </div>
+    <SubFooter />
+    <Footer />
   </div>
 </template>
 
@@ -276,76 +191,38 @@
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/Footer'
 import SubFooter from '~/components/layouts/subFooter'
-import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 
 export default {
   components: {
     Header,
     Footer,
-    SubFooter,
-    HyperLinkContainer
+    SubFooter
+  },
+  middleware({ store, redirect }) {
+    if (store.getters.is_logged_in) {
+      return redirect('/home')
+    }
   },
   data() {
     return {
-      showOverlay: true,
       user: {
         name: '',
         user_id: '',
         email: '',
         password: '',
         password_confirmation: ''
-      },
-      listDatas: [
-        { text: 'Home', icon: 'fas fa-home', link: '/' },
-        { text: '通知', icon: 'fas fa-bell', link: '/notification' },
-        { text: 'フィード', icon: 'far fa-comments', link: '/feed' },
-        { text: '便利リンク集', icon: 'fas fa-code-branch', link: '/links' },
-        { text: 'お知らせ', icon: 'fas fa-bullhorn', link: '/announce' },
-        {
-          text: 'プロフィール',
-          icon: 'far fa-id-card',
-          link: `/users/`
-        },
-        {
-          text: 'プロフィールを編集',
-          icon: 'fas fa-user-edit',
-          link: '/settings/profile'
-        },
-        { text: '設定', icon: 'fas fa-cog', link: '/settings' }
-      ]
+      }
     }
   },
   methods: {
     registerUser() {
-      this.$axios.$post('/api/v1/users', { user: this.user }).catch((err) => {
-        console.log(err)
-      })
+      this.$axios.$post('/api/v1/users', { user: this.user })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-#flex {
-  display: flex;
-}
-#leftContent {
-  width: 25%;
-  position: sticky;
-  top: 50px;
-  height: calc(100vh - 50px);
-  border-right: rgba(0, 0, 0, 0.12) solid 1px;
-}
-#middleContent {
-  width: 50%;
-}
-#rightContent {
-  width: 25%;
-  position: sticky;
-  top: 50px;
-  height: calc(100vh - 50px);
-  border-left: rgba(0, 0, 0, 0.12) solid 1px;
-}
 .serviceCard {
   margin: 6em 0;
 }

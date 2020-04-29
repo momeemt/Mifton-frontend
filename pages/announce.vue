@@ -17,16 +17,16 @@
 export default {
   name: 'AnnounceVue',
   layout: 'pc/general',
+  data() {
+    return {
+      allNews: []
+    }
+  },
   async asyncData({ app }) {
     const res = await app.$api.index('news')
     const resData = res.res
     const resCode = res.resCode
     return { resData, resCode }
-  },
-  data() {
-    return {
-      allNews: []
-    }
   }
 }
 </script>

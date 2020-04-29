@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showing_dialog" width="500">
+  <v-dialog v-model="showingDialog" width="500">
     <v-card>
       <v-card-title>ドロップを削除しますか？</v-card-title>
       <v-card-text>
@@ -23,7 +23,7 @@
 export default {
   name: 'RemoveDropConfirmDialogVue',
   props: {
-    showing_dialog: {
+    showingDialog: {
       type: Boolean,
       required: true
     }

@@ -44,7 +44,10 @@
 export default {
   name: 'CreateModalVue',
   props: {
-    modelObject: Object
+    modelObject: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {

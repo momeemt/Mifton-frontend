@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     async toUserProfilePage(userId) {
-      console.log('coming')
       await this.$router.push(`/bector/${userId}`)
     }
   }

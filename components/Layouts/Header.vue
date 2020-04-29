@@ -86,4 +86,10 @@ export default {
 .Bector {
   background: linear-gradient(to left, #182848, #4b6cb7);
 }
+.Crafes {
+  background: #2c4f54;
+}
+.Qrafters {
+  background: #d7003a;
+}
 </style>

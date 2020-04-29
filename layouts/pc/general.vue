@@ -4,7 +4,7 @@
       <Header page-type="General" />
       <div id="flex">
         <div id="leftContent">
-          <HyperLinkContainer :listDatas="listDatas" pageType="General" />
+          <HyperLinkContainer :listDatas="listDatas" page-type="General" />
         </div>
         <div id="middleContent">
           <nuxt />
@@ -20,14 +20,10 @@ import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import Header from '~/components/layouts/Header'
 export default {
   components: { HyperLinkContainer, Header },
-  async asyncData({ store }) {
-    const userId = await store.state.currentUser.id
-    return { userId }
-  },
   data() {
     return {
       listDatas: [
-        { text: 'Home', icon: 'fas fa-home', link: '/' },
+        { text: 'Home', icon: 'fas fa-home', link: '/home' },
         { text: '通知', icon: 'fas fa-bell', link: '/notification' },
         { text: 'フィード', icon: 'far fa-comments', link: '/feed' },
         { text: '便利リンク集', icon: 'fas fa-code-branch', link: '/links' },
@@ -45,6 +41,10 @@ export default {
         { text: '設定', icon: 'fas fa-cog', link: '/settings/home' }
       ]
     }
+  },
+  async asyncData({ store }) {
+    const userId = await store.state.currentUser.id
+    return { userId }
   }
 }
 </script>

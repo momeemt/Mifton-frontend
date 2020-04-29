@@ -14,8 +14,8 @@
             <div class="buttonWrapper">
               <v-btn
                 id="drop-button"
-                class="ma-2 blue white--text darken-3 py-0"
                 @click="openDropDialog"
+                class="ma-2 blue white--text darken-3 py-0"
                 rounded
                 depressed
               >
@@ -25,8 +25,8 @@
             <div class="buttonWrapper">
               <v-btn
                 id="topic-button"
-                class="ma-2 indigo white--text darken-3 py-0"
                 @click="openTopicDialog"
+                class="ma-2 indigo white--text darken-3 py-0"
                 rounded
                 depressed
               >
@@ -53,6 +53,7 @@ import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import NotificationContainer from '~/components/Bector/NotificationContainer'
 import NewDropForm from '~/components/Bector/NewDropForm'
 import NewTopicForm from '~/components/Bector/NewTopicForm'
+import homeExpectBector from '~/middleware/homeExpectBector'
 
 export default {
   name: 'PCBectorLayout',
@@ -63,6 +64,7 @@ export default {
     NewDropForm,
     NewTopicForm
   },
+  middleware: homeExpectBector,
   data() {
     return {
       listDatas: [
@@ -99,7 +101,6 @@ export default {
       this.showingDropDialog = false
     },
     emitAddDrop(drop) {
-      console.log(drop)
       this.$nuxt.$emit('addDrop', drop)
     },
     openTopicDialog() {

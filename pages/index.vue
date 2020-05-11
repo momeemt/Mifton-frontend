@@ -168,6 +168,7 @@ import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/Footer'
 import SubFooter from '~/components/layouts/subFooter'
 import LoginCard from '~/components/Organisms/LoginCard'
+import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 
 export default {
   components: {
@@ -176,11 +177,7 @@ export default {
     Footer,
     SubFooter
   },
-  middleware({ store, redirect }) {
-    if (store.getters.is_logged_in) {
-      return redirect('/home')
-    }
-  },
+  middleware: homeRedirectLoggedUser,
   data() {
     return {
       user: {

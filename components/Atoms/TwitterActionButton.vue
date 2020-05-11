@@ -5,6 +5,12 @@
   </v-btn>
 </template>
 
+<style lang="scss" scoped>
+.twitterLoginBtn {
+  width: 250px;
+}
+</style>
+
 <script>
 export default {
   name: 'TwitterActionButton',

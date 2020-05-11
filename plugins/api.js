@@ -13,6 +13,19 @@ export default ({ app }, inject) => {
         })
       return { res, resCode }
     },
+    async indexByUserId(modelName, userID) {
+      let resCode
+      const res = await app.$axios
+        .$get(`/api/v1/${modelName}/user_id/${userID}`)
+        .then((res) => {
+          resCode = 200
+          return res
+        })
+        .catch((err) => {
+          resCode = err.response.status
+        })
+      return { res, resCode }
+    },
     async create(modelName, data) {
       let resCode
       const res = await app.$axios
@@ -50,14 +63,17 @@ export default ({ app }, inject) => {
       return { res, resCode }
     },
     async update(modelName, data) {
-      await app.$axios
-        .$put(`/api/v1/${modelName}/${data.id}/edit`, data)
+      let resCode
+      const res = await app.$axios
+        .$put(`/api/v1/${modelName}/${data.id}`, data)
         .then((res) => {
+          resCode = 200
           return res
         })
         .catch((err) => {
-          return err
+          resCode = err.response.status
         })
+      return { res, resCode }
     }
   }
   inject('api', api)

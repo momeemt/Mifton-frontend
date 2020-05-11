@@ -1,5 +1,5 @@
 <template>
-  <v-card id="signUpCard" width="60%" height="80%">
+  <v-card id="signUpCard">
     <v-card-title>Miftonの世界に飛び込もう</v-card-title>
     <SignUpForm @setUserData="setUserData" />
     <SignUpAction @userRegister="userRegister" />

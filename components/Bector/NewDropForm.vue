@@ -108,6 +108,7 @@ export default {
       const resCode = res.resCode
       const drop = {
         ...res.res,
+        type: 'drop',
         user: this.$store.getters.currentUser
       }
       if (resCode === 200) {

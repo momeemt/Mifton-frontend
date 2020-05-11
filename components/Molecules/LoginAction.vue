@@ -5,7 +5,11 @@
     </nuxt-link>
     <v-spacer></v-spacer>
     <TwitterActionButton :label="twitterBtnLabel" />
-    <GenericActionButton :label="loginBtnLabel" @clickEvent="clickEvent" />
+    <GenericActionButton
+      :label="loginBtnLabel"
+      :unableUsingBtn="unableUsingBtn"
+      @clickEvent="clickEvent"
+    />
   </v-card-actions>
 </template>
 
@@ -17,6 +21,12 @@ export default {
   components: {
     GenericActionButton,
     TwitterActionButton
+  },
+  props: {
+    unableUsingBtn: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {

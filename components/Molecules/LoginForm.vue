@@ -6,17 +6,23 @@
     <v-alert v-show="unprocessableEntityError" dense outlined type="error">
       メールアドレスかパスワードが間違っています。もう一度確認してください。
     </v-alert>
-    <GenericDatumInput
-      :label="userIdLabel"
-      :datum="user.user_id"
-      @setDatum="setUserId"
-    />
-    <PasswordInput
-      :label="passwordLabel"
-      :password="user.password"
-      @setPassword="setPassword"
-    />
-    <v-checkbox :label="rememberCheckLabel"></v-checkbox>
+    <v-form>
+      <GenericDatumInput
+        :label="userIdLabel"
+        :datum="user.user_id"
+        :rule="requireRule"
+        @setDatum="setUserId"
+        hint=""
+      />
+      <PasswordInput
+        :label="passwordLabel"
+        :password="user.password"
+        :rule="requireRule"
+        @setPassword="setPassword"
+        hint=""
+      />
+      <v-checkbox :label="rememberCheckLabel"></v-checkbox>
+    </v-form>
   </v-card-text>
 </template>
 
@@ -37,7 +43,10 @@ export default {
       user: {
         user_id: '',
         password: ''
-      }
+      },
+      requireRule: [(v) => v !== '' || '入力してください'],
+      unAuthorizedError: false,
+      unprocessableEntityError: false
     }
   },
   methods: {

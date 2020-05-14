@@ -28,18 +28,23 @@
         outlined
       ></v-file-input>
       <v-text-field
-        v-model="name"
+        :value="user.name"
+        @input="updateSetting($event, 'name')"
         outlined
         label="ニックネーム"
         placeholder="miftonちゃん"
       ></v-text-field>
       <v-textarea outlined label="プロフィール"></v-textarea>
       <v-text-field
+        :value="optionalData.website"
+        @input="updateOptionalDataSetting($event, 'website')"
         outlined
         label="ウェブサイト"
         placeholder="mifton.app"
       ></v-text-field>
       <v-text-field
+        :value="optionalData.location"
+        @input="updateOptionalDataSetting($event, 'location')"
         outlined
         label="場所"
         placeholder="Stockholm"
@@ -79,31 +84,35 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'ProfileVue',
   layout: 'pc/general',
   data() {
     return {
-      currentUser: this.$store.state.currentUser
+      res: {}
     }
   },
   computed: {
-    name: {
-      get() {
-        return this.$store.state.currentUser.name
-      },
-      set(newVal) {
-        this.$store.commit('updateUserName', newVal)
-      }
-    }
+    ...mapGetters('users', ['user', 'optionalData', 'job'])
+  },
+  asyncData({ store }) {
+    const currentUser = store.state.sessions.currentUser
+    store.dispatch('users/fetchUser', currentUser.id)
   },
   methods: {
     // TODO: エラーハンドリングを追加する
     saveProfile() {
-      this.$axios.$put(`/api/v1/users/${this.currentUser.id}`, {
-        user: this.currentUser
-      })
-    }
+      this.updateProfile()
+    },
+    updateSetting(event, settingKey) {
+      this.updateUser(settingKey, event)
+    },
+    updateOptionalDataSetting(event, settingKey) {
+      this.updateOptionalDataSetting(settingKey, event)
+    },
+    ...mapMutations('users', ['updateUser', 'updateOptionalUserDatum']),
+    ...mapActions('users', ['updateProfile'])
   }
 }
 </script>

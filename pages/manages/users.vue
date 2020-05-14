@@ -3,13 +3,14 @@
     <manage-data-table
       :modelJsonData="usersObjectForModal"
       :headers="headers"
-      :modelObject="resData"
+      :modelObject="users"
       model-name="ユーザー"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import manageDataTable from '~/components/manages/manageDataTable'
 import usersJsonData from '~/assets/json/modelObject/users.json'
 export default {
@@ -29,11 +30,11 @@ export default {
       usersObjectForModal: usersJsonData
     }
   },
-  async asyncData({ app }) {
-    const res = await app.$api.index('users')
-    const resData = res.res
-    const resCode = res.resCode
-    return { resData, resCode }
+  computed: {
+    ...mapGetters('users', ['users'])
+  },
+  async asyncData({ store }) {
+    await store.dispatch('users/fetchUsers')
   }
 }
 </script>

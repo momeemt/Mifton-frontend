@@ -12,6 +12,7 @@
 import Header from '~/components/layouts/Header'
 import Footer from '~/components/layouts/Footer'
 import LoginCard from '~/components/Organisms/LoginCard'
+import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 
 export default {
   components: {
@@ -19,43 +20,7 @@ export default {
     Header,
     Footer
   },
-  data() {
-    return {
-      user_id: '',
-      password: '',
-      unAuthorizedError: false,
-      unprocessableEntityError: false
-    }
-  },
-  methods: {
-    async login() {
-      this.unAuthorizedError = false
-      this.unprocessableEntityError = false
-      const res = await this.$api.create('sessions', {
-        user_id: this.user_id,
-        password: this.password
-      })
-      const resData = res.res
-      const resCode = res.resCode
-      if (resCode === 200) {
-        this.$store.commit('login', resData)
-        await this.$router.push('/')
-      } else if (resCode === 401) {
-        // 認証なし
-        this.unAuthorizedError = true
-      } else {
-        // 間違ってるよ
-        this.unprocessableEntityError = true
-      }
-    },
-    twitterLogin() {
-      // twitter login する
-      console.log('a')
-    },
-    logout() {
-      this.$store.commit('logout')
-    }
-  }
+  middleware: homeRedirectLoggedUser
 }
 </script>
 

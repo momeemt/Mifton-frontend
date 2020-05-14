@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h1>通知</h1>
-    <v-list>
-      <v-list-item v-for="notice in notificationsData">
-        <v-list-item-content>{{ notice.content }}</v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </div>
+  <v-card id="notificationsCard" outlined>
+    <v-card-title>通知</v-card-title>
+    <v-card-text>
+      <v-list v-if="resData != null">
+        <v-list-item v-for="notice in notificationsData">
+          <v-list-item-content>{{ notice.content }}</v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <p v-else>通知はありません</p>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -22,4 +25,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#notificationsCard {
+  border: none !important;
+}
+</style>

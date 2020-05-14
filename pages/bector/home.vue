@@ -45,7 +45,7 @@
           <span>グローバル</span>
         </v-btn>
       </v-bottom-navigation>
-      <DropsContainer :posts="getTimelineData()" />
+      <DropsContainer :posts="getTimelineData()" :addPost="addPostCount" />
     </div>
   </div>
 </template>
@@ -68,7 +68,8 @@ export default {
   },
   data() {
     return {
-      switchTimeline: 'home'
+      switchTimeline: 'home',
+      addPostCount: 0
     }
   },
   async asyncData({ app }) {
@@ -102,7 +103,9 @@ export default {
       }
     },
     addNewDrop(drop) {
-      this.resData.unshift(drop)
+      this.postsData.unshift(drop)
+      this.dropsData.unshift(drop)
+      this.addPostCount += 1
     },
     getTimelineData() {
       const option = this.switchTimeline

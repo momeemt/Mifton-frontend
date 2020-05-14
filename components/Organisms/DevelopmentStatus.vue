@@ -54,13 +54,13 @@ export default {
   components: { DevelopmentProgressBar },
   data() {
     return {
-      postConvenienceLink: 10,
-      mulchplay: 1,
-      directMail: 0,
-      list: 0,
-      reservationDrop: 0,
-      crafesPublish: 1,
-      qraftersPublish: 0
+      postConvenienceLink: '10',
+      mulchplay: '1',
+      directMail: '0',
+      list: '0',
+      reservationDrop: '0',
+      crafesPublish: '1',
+      qraftersPublish: '0'
     }
   }
 }

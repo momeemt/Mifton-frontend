@@ -26,7 +26,7 @@ export default {
   },
   props: {
     modelData: {
-      type: Number,
+      type: String,
       required: true
     },
     color: {

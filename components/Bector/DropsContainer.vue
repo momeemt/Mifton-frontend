@@ -55,13 +55,17 @@ export default {
     posts: {
       type: Array,
       required: true
+    },
+    addPost: {
+      type: Number,
+      required: true
     }
   },
   data() {
     return {
       expectedRemovingDrop: {},
       showing_dialog: false,
-      dropCount: Math.min(20, this.posts.length)
+      dropCount: Math.min(20, this.posts.length) + this.addPost
     }
   },
   methods: {

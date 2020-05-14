@@ -1,6 +1,5 @@
 export default function({ store }) {
-  console.error(store.getters.is_logged_in)
-  if (store.getters.is_logged_in) {
+  if (store.state.sessions.isLoggedIn) {
     return Promise.resolve()
   } else if (process.browser) {
     window.location.href = '/'

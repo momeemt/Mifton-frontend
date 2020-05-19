@@ -1,10 +1,10 @@
 <template>
   <div @click.stop="toUserProfilePage(user.user_id)">
     <div v-if="existUserIcon">
-      <img src="/default_icon.png" />
+      <img src="/default_icon.png" alt="デフォルトアイコン" />
     </div>
     <div v-else>
-      <img src="/default_icon.png" />
+      <img src="/default_icon.png" alt="デフォルトアイコン" />
     </div>
   </div>
 </template>

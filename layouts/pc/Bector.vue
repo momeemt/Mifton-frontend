@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header'
+import Header from '~/components/Layouts/Header'
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
 import NotificationContainer from '~/components/Bector/NotificationContainer'
 import NewDropForm from '~/components/Bector/NewDropForm'

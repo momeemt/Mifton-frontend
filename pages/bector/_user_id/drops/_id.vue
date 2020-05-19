@@ -32,7 +32,6 @@ export default {
     const dropData = res.res
     const resCode = res.resCode
     if (dropData.user.user_id !== userId) {
-      console.warn('不一致')
     }
     return { dropData, resCode }
   }

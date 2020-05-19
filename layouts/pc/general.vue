@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header'
+import Header from '~/components/Layouts/Header'
 import GeneralHyperLinkContainer from '~/components/Organisms/GeneralHyperLinkContainer'
 export default {
   components: { GeneralHyperLinkContainer, Header }

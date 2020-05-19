@@ -2,11 +2,11 @@
   <v-card id="announceCard" outlined>
     <v-card-title>運営からのお知らせ</v-card-title>
     <v-card-text>
-      <v-list two-line v-if="resData != null">
-        <v-list-item v-for="news in resData">
+      <v-list v-if="resData != null" two-line>
+        <v-list-item v-for="(value, key) in resData" :key="key">
           <v-list-item-content>
-            <v-list-item-title>{{ news.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{ news.content }}</v-list-item-subtitle>
+            <v-list-item-title>{{ value.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ value.content }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>

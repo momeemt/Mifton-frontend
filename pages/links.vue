@@ -5,6 +5,7 @@
       <v-list v-if="resData != null">
         <v-list-item
           v-for="data in resData"
+          :key="data"
           :href="data.link"
           three-line
           target="_blank"

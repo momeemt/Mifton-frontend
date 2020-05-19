@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ManageDataTable from '../../components/manages/manageDataTable'
+import ManageDataTable from '../../components/Manages/ManageDataTable'
 import dropsJsonData from '~/assets/json/modelObject/drops.json'
 export default {
   name: 'UsersVue',

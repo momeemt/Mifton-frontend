@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import LoginForm from '~/components/Molecules/LoginForm'
 import LoginAction from '~/components/Molecules/LoginAction'
 export default {
@@ -24,13 +25,10 @@ export default {
   methods: {
     async userLogin() {
       if (!this.hasNullData) {
-        const res = await this.$api.create('sessions', this.user)
-        const resData = res.res
-        const resCode = res.resCode
-        if (resCode === 200) {
-          this.$store.commit('login', resData)
+        const { status } = await this.login({ user: this.user })
+        if (status === 200) {
           await this.$router.push('/home')
-        } else if (resCode === 401) {
+        } else if (status === 401) {
           this.unAuthorizedError = true
         } else {
           this.unprocessableEntityError = true
@@ -40,7 +38,8 @@ export default {
     setUserData(user) {
       this.user = user
       this.hasNullData = !this.user.user_id || !this.user.password
-    }
+    },
+    ...mapActions('sessions', ['login'])
   }
 }
 </script>

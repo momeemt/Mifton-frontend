@@ -14,19 +14,19 @@
         >開発者</a
       >
     </div>
-    <div v-if="$store.getters.is_logged_in" class="group">
+    <div v-if="isOperator()" class="group">
       <i class="fas fa-user-cog"></i>
       <nuxt-link to="/manages/dash">管理パネル</nuxt-link>
     </div>
-    <div v-if="$store.getters.is_logged_in" class="group">
+    <div v-if="isLoggedIn" class="group">
       <i class="fas fa-sign-out-alt"></i>
-      <p @click="logout">ログアウト</p>
+      <p @click="logoutSubmit">ログアウト</p>
     </div>
-    <div v-if="!$store.getters.is_logged_in" class="group">
+    <div v-if="!isLoggedIn" class="group">
       <i class="fas fa-sign-in-alt"></i>
       <nuxt-link to="/login">ログイン</nuxt-link>
     </div>
-    <div v-if="!$store.getters.is_logged_in" class="group">
+    <div v-if="!isLoggedIn" class="group">
       <i class="fas fa-user-plus"></i>
       <nuxt-link to="/signup">登録する</nuxt-link>
     </div>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Header',
   props: {
@@ -42,11 +43,23 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapGetters('sessions', ['currentUser', 'isLoggedIn'])
+  },
   methods: {
-    logout() {
-      this.$store.commit('logout')
+    logoutSubmit() {
+      this.logout(this.currentUser)
       this.$router.push('/')
-    }
+    },
+    isOperator() {
+      if (!this.isLoggedIn) return
+      const currentUser = this.currentUser
+      const userJob = currentUser.user_job
+      const admin = userJob.admin
+      const operator = userJob.operator
+      return admin || operator
+    },
+    ...mapActions('sessions', ['logout'])
   }
 }
 </script>

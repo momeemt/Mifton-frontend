@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header'
+import Header from '~/components/Layouts/Header'
 
 export default {
   components: {

@@ -17,7 +17,7 @@
 
 <script>
 import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
-import Header from '~/components/layouts/Header'
+import Header from '~/components/Layouts/Header'
 export default {
   components: { HyperLinkContainer, Header },
   data() {

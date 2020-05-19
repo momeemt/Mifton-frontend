@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header'
-import Footer from '~/components/layouts/Footer'
+import Header from '~/components/Layouts/Header'
+import Footer from '~/components/Layouts/Footer'
 import LoginCard from '~/components/Organisms/LoginCard'
 import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 

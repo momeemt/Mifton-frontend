@@ -164,9 +164,9 @@
 </template>
 
 <script>
-import Header from '~/components/layouts/Header'
-import Footer from '~/components/layouts/Footer'
-import SubFooter from '~/components/layouts/subFooter'
+import Header from '~/components/Layouts/Header'
+import Footer from '~/components/Layouts/Footer'
+import SubFooter from '~/components/Layouts/subFooter'
 import LoginCard from '~/components/Organisms/LoginCard'
 import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 

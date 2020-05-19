@@ -2,9 +2,9 @@
   <v-card id="notificationsCard" outlined>
     <v-card-title>通知</v-card-title>
     <v-card-text>
-      <v-list v-if="resData != null">
-        <v-list-item v-for="notice in notificationsData">
-          <v-list-item-content>{{ notice.content }}</v-list-item-content>
+      <v-list v-if="notificationsData != null">
+        <v-list-item v-for="(value, key) in notificationsData" :key="key">
+          <v-list-item-content>{{ value.content }}</v-list-item-content>
         </v-list-item>
       </v-list>
       <p v-else>通知はありません</p>

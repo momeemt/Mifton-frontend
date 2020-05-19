@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import manageDataTable from '~/components/manages/manageDataTable'
+import manageDataTable from '~/components/Manages/ManageDataTable'
 import usersJsonData from '~/assets/json/modelObject/users.json'
 export default {
   name: 'Users',

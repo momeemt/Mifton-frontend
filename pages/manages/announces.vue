@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ManageDataTable from '~/components/manages/manageDataTable'
+import ManageDataTable from '~/components/Manages/ManageDataTable'
 import newsJsonData from '~/assets/json/modelObject/news.json'
 export default {
   name: 'NewsVue',

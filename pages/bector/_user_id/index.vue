@@ -10,7 +10,7 @@
         <p>{{ user.created_at }}にMiftonへ飛び込みました！</p>
         <v-divider />
         <v-list>
-          <v-list-item v-for="drop in user.drops">
+          <v-list-item v-for="drop in user.drops" :key="drop">
             <v-list-item-content>
               <p>{{ drop.content }}</p>
             </v-list-item-content>
@@ -23,7 +23,7 @@
 
 <script>
 import ReturnPageButtonContainer from '~/components/general/ReturnPageButtonContainer'
-import DisplayUserName from '~/components/general/DisplayUserName'
+import DisplayUserName from '~/components/General/DisplayUserName'
 export default {
   name: 'IndexVue',
   layout: 'pc/Bector',

@@ -5,21 +5,21 @@
     </v-card-title>
     <v-card-text>
       <p>@{{ user.user_id }}</p>
-      <p v-if="optionalData.profile != null">
-        {{ optionalData.profile }}
+      <p v-if="optionalUserDatum.profile != null">
+        {{ optionalUserDatum.profile }}
       </p>
-      <p v-if="optionalData.location != null">
-        {{ optionalData.location }}
+      <p v-if="optionalUserDatum.location != null">
+        {{ optionalUserDatum.location }}
       </p>
-      <p v-if="optionalData.website != null">
-        <a :href="`https://${optionalData.website}`" target="_blank">
-          {{ website }}
+      <p v-if="optionalUserDatum.website != null">
+        <a :href="`https://${optionalUserDatum.website}`" target="_blank">
+          {{ optionalUserDatum.website }}
         </a>
       </p>
       <p>{{ user.created_at | formatDatetime }}にMiftonに飛び込みました！</p>
       <v-btn
-        v-if="optionalData.twitterID != null"
-        :href="`https://www.twitter.com/${optionalData.twitterID}`"
+        v-if="optionalUserDatum.twitterID != null"
+        :href="`https://www.twitter.com/${optionalUserDatum.twitterID}`"
         text
       >
         <v-icon>fab fa-twitter</v-icon>
@@ -47,7 +47,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('users', ['user', 'status', 'optionalData', 'job'])
+    ...mapGetters('users', ['user', 'status', 'optionalUserDatum', 'job'])
   },
   async asyncData({ route, store, error }) {
     const { id } = route.params

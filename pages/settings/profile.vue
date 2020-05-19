@@ -27,67 +27,82 @@
         label="アイコン"
         outlined
       ></v-file-input>
-      <v-text-field
-        :value="user.name"
-        @input="updateSetting($event, 'name')"
-        outlined
+      <UserTextField
+        model-key="user"
+        model-property="name"
         label="ニックネーム"
         placeholder="miftonちゃん"
-      ></v-text-field>
-      <v-textarea outlined label="プロフィール"></v-textarea>
-      <v-text-field
-        :value="optionalData.website"
-        @input="updateOptionalDataSetting($event, 'website')"
-        outlined
+      />
+      <UserTextArea
+        model-key="optionalUserDatum"
+        model-property="profile"
+        label="プロフィール"
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="website"
         label="ウェブサイト"
         placeholder="mifton.app"
-      ></v-text-field>
-      <v-text-field
-        :value="optionalData.location"
-        @input="updateOptionalDataSetting($event, 'location')"
-        outlined
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="location"
         label="場所"
         placeholder="Stockholm"
-      ></v-text-field>
-      <v-select
+      />
+      <UserSelect
         :items="['相互フォローのみ', '全体公開', '非公開']"
-        outlined
+        model-key="optionalUserDatum"
+        model-property="publish_old"
         label="年齢の公開範囲"
-      ></v-select>
-      <v-select
+      />
+      <UserSelect
         :items="['相互フォローのみ', '全体公開', '非公開']"
-        outlined
+        model-key="optionalUserDatum"
+        model-property="publish_birthday"
         label="誕生日の公開範囲"
-      ></v-select>
-      <v-text-field
-        outlined
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="twitter_id"
         label="TwitterID"
         placeholder="mifton_xyz"
-      ></v-text-field>
-      <v-text-field
-        outlined
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="lobi_id"
         label="LobiID"
-        placeholder="982e201c4bd6cba1c4b7f75cc7bc9a97538c9179"
-      ></v-text-field>
-      <v-text-field
-        outlined
+        placeholder="URLの末尾のIDを入力しましょう"
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="github_id"
         label="GithubID"
         placeholder="momeemt"
-      ></v-text-field>
-      <v-text-field
-        outlined
+      />
+      <UserTextField
+        model-key="optionalUserDatum"
+        model-property="discord_id"
         label="DiscordID"
         placeholder="367903485074735105"
-      ></v-text-field>
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import UserTextField from '@/components/Atoms/UserTextField'
+import UserTextArea from '@/components/Atoms/UserTextArea'
+import UserSelect from '@/components/Atoms/UserSelect'
 export default {
   name: 'ProfileVue',
   layout: 'pc/general',
+  components: {
+    UserTextField,
+    UserTextArea,
+    UserSelect
+  },
   data() {
     return {
       res: {}
@@ -98,12 +113,17 @@ export default {
   },
   asyncData({ store }) {
     const currentUser = store.state.sessions.currentUser
-    store.dispatch('users/fetchUser', currentUser.id)
+    store.dispatch('users/fetchUser', { id: currentUser.id })
   },
   methods: {
     // TODO: エラーハンドリングを追加する
     saveProfile() {
-      this.updateProfile()
+      const userPayload = { user: this.user }
+      this.updateProfile({ payload: userPayload })
+      const optionalUserDatumPayload = {
+        optionalUserDatum: this.optionalData
+      }
+      this.updateOptionalUserDatum({ payload: optionalUserDatumPayload })
     },
     updateSetting(event, settingKey) {
       this.updateUser(settingKey, event)

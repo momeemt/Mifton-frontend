@@ -38,12 +38,17 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+  #signUpCard {
+    height: 85%;
+    width: 60%;
+  }
 }
 </style>
 <script>
-import Header from '~/components/layouts/Header'
+import Header from '~/components/Layouts/Header'
 import Footer from '~/components/Layouts/Footer'
 import SignUpCard from '~/components/Organisms/SignUpCard'
+import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 
 export default {
   components: {
@@ -51,6 +56,7 @@ export default {
     Header,
     SignUpCard
   },
+  middleware: homeRedirectLoggedUser,
   data() {
     return {
       new_user: {
@@ -75,9 +81,7 @@ export default {
         .then((res) => {
           this.$router.push('/')
         })
-        .catch((err) => {
-          console.log(err)
-        })
+        .catch((_) => {})
     }
   }
 }

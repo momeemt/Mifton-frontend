@@ -1,13 +1,13 @@
 export const state = () => ({
   user: {},
-  optionalData: {},
+  optionalUserDatum: {},
   job: {},
   users: []
 })
 
 export const getters = {
   user: (state) => state.user,
-  optionalData: (state) => state.optionalData,
+  optionalUserDatum: (state) => state.optionalUserDatum,
   job: (state) => state.job,
   users: (state) => state.users
 }
@@ -18,14 +18,16 @@ export const mutations = {
   },
   setUser(state, { user }) {
     state.user = user
-    state.optionalData = user.optional_user_datum
+    state.optionalUserDatum = user.optional_user_datum
     state.job = user.user_job
   },
-  updateUser(state, settingKey, settingValue) {
-    state.user[settingKey] = settingValue
+  updateUser(state, { payload }) {
+    const key = payload.key
+    state.user[key] = payload.value
   },
-  updateOptionalUserDatum(state, settingKey, settingValue) {
-    state.optionalData[settingKey] = settingValue
+  updateOptionalUserDatum(state, { payload }) {
+    const key = payload.key
+    state.optionalUserDatum[key] = payload.value
   }
 }
 
@@ -51,7 +53,12 @@ export const actions = {
     commit('setUsers', { users })
     return { status }
   },
-  async updateProfile({ commit }) {
-    await this.$api.update('users', this.currentUser)
+  async updateProfile({ commit }, { payload }) {
+    const user = payload.user
+    await this.$api.update('users', user)
+  },
+  async updateOptionalUserDatum({ commit }, { payload }) {
+    const optionalUserDatum = payload.optionalUserDatum
+    await this.$api.update('optional_user_data', optionalUserDatum)
   }
 }

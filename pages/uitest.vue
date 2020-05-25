@@ -7,12 +7,12 @@
       show-select
       single-select="true"
     ></v-data-table>
+    <v-select :items="[1, 2, 3, 4, 5]"></v-select>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Uitest',
   data() {
     return {
       headers: [

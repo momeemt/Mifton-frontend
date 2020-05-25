@@ -17,7 +17,6 @@
 
 <script>
 export default {
-  name: 'PasswordInput',
   props: {
     password: {
       type: String,

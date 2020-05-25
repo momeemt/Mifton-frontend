@@ -17,7 +17,6 @@
 import TwitterActionButton from '../Atoms/TwitterActionButton'
 import GenericActionButton from '../Atoms/GenericActionButton'
 export default {
-  name: 'LoginAction',
   components: {
     GenericActionButton,
     TwitterActionButton

@@ -11,7 +11,6 @@ import { mapActions } from 'vuex'
 import LoginForm from '~/components/Molecules/LoginForm'
 import LoginAction from '~/components/Molecules/LoginAction'
 export default {
-  name: 'LoginCard',
   components: {
     LoginAction,
     LoginForm

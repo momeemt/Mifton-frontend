@@ -38,7 +38,6 @@ import GenericDatumInput from '~/components/Atoms/GenericDatumInput'
 import EmailInput from '~/components/Atoms/EmailInput'
 import PasswordInput from '~/components/Atoms/PasswordInput'
 export default {
-  name: 'SignUpForm',
   components: {
     GenericDatumInput,
     EmailInput,

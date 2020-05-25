@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  name: 'TwitterActionButton',
   props: {
     label: {
       type: String,

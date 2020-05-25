@@ -21,7 +21,6 @@
 
 <script>
 export default {
-  name: 'RemoveDropConfirmDialogVue',
   props: {
     showingDialog: {
       type: Boolean,

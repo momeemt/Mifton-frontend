@@ -30,7 +30,6 @@
 import GenericDatumInput from '../Atoms/GenericDatumInput'
 import PasswordInput from '../Atoms/PasswordInput'
 export default {
-  name: 'LoginForm',
   components: {
     PasswordInput,
     GenericDatumInput

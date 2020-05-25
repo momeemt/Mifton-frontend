@@ -13,7 +13,6 @@
 import ManageDataTable from '~/components/Manages/ManageDataTable'
 import newsJsonData from '~/assets/json/modelObject/news.json'
 export default {
-  name: 'NewsVue',
   layout: 'pc/manage',
   components: {
     ManageDataTable

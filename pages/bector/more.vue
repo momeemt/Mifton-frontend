@@ -79,7 +79,6 @@
 
 <script>
 export default {
-  name: 'BectorMorePage',
   layout: 'pc/Bector'
 }
 </script>

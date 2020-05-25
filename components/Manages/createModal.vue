@@ -42,7 +42,6 @@
 
 <script>
 export default {
-  name: 'CreateModalVue',
   props: {
     modelObject: {
       type: Object,

@@ -13,7 +13,6 @@
 import convenienceLinkJsonData from '~/assets/json/modelobject/convenience_links.json'
 import ManageDataTable from '~/components/Manages/ManageDataTable'
 export default {
-  name: 'ConvenienceLinksVue',
   layout: 'pc/manage',
   components: {
     ManageDataTable

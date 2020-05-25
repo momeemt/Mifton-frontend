@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  name: 'BectorTrendPage',
   layout: 'pc/Bector'
 }
 </script>

@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: 'BectorNotificationsPage',
-  layout: 'pc/Bector'
+  layout: 'pc/Bector',
+  head() {
+    return {
+      title: '通知'
+    }
+  }
 }
 </script>

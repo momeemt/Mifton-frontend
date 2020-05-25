@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'IndexVue',
   layout: 'pc/general'
 }
 </script>

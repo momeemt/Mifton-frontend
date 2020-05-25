@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'BectorBookmarksPage',
   layout: 'pc/Bector'
 }
 </script>

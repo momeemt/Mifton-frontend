@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: 'GenericDatumInput',
   props: {
     hint: {
       type: String,

@@ -13,7 +13,6 @@
 import TwitterActionButton from '~/components/Atoms/TwitterActionButton'
 import GenericActionButton from '~/components/Atoms/GenericActionButton'
 export default {
-  name: 'SignUpAction',
   components: {
     TwitterActionButton,
     GenericActionButton

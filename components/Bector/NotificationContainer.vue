@@ -22,9 +22,7 @@
 </template>
 
 <script>
-export default {
-  name: 'NotificationContainer'
-}
+export default {}
 </script>
 
 <style scoped>

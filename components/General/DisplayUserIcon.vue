@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  name: 'DisplayUserIconVue',
   props: {
     user: {
       type: Object,

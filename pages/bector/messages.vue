@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  name: 'BectorMessagePage',
   layout: 'pc/Bector'
 }
 </script>

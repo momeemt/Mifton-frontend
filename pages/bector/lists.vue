@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'BectorListPage',
   layout: 'pc/Bector'
 }
 </script>

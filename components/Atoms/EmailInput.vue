@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: 'EmailInput',
   props: {
     hint: {
       type: String,

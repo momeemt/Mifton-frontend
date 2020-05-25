@@ -10,7 +10,6 @@
 import SignUpForm from '~/components/Molecules/SignUpForm'
 import SignUpAction from '~/components/Molecules/SignUpAction'
 export default {
-  name: 'SignUpCard',
   components: {
     SignUpForm,
     SignUpAction

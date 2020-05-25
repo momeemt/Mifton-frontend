@@ -13,7 +13,6 @@
 import ManageDataTable from '../../components/Manages/ManageDataTable'
 import dropsJsonData from '~/assets/json/modelObject/drops.json'
 export default {
-  name: 'UsersVue',
   layout: 'pc/manage',
   components: {
     ManageDataTable

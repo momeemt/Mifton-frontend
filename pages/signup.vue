@@ -48,7 +48,6 @@
 import TheHeader from '~/components/Organisms/TheHeader'
 import TheFooter from '~/components/Organisms/TheFooter'
 import SignUpCard from '~/components/Organisms/SignUpCard'
-import RedirectGuestUser from '~/middleware/RedirectGuestUser'
 
 export default {
   components: {
@@ -56,7 +55,6 @@ export default {
     TheHeader,
     SignUpCard
   },
-  middleware: RedirectGuestUser,
   data() {
     return {
       new_user: {
@@ -67,6 +65,13 @@ export default {
         email: ''
       }
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      if (this.$store.state.sessions.isLoggedIn) {
+        this.$router.push('/home')
+      }
+    }, 0)
   },
   methods: {
     addUser() {

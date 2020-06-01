@@ -12,7 +12,6 @@
 import TheHeader from '~/components/Organisms/TheHeader'
 import TheFooter from '~/components/Organisms/TheFooter'
 import LoginCard from '~/components/Organisms/LoginCard'
-import RedirectGuestUser from '~/middleware/RedirectGuestUser'
 
 export default {
   components: {
@@ -20,7 +19,13 @@ export default {
     TheHeader,
     TheFooter
   },
-  middleware: RedirectGuestUser
+  mounted() {
+    setTimeout(() => {
+      if (this.$store.state.sessions.isLoggedIn) {
+        this.$router.push('/home')
+      }
+    }, 0)
+  }
 }
 </script>
 

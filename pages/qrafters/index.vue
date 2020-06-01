@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header page-type="Qrafters" />
+    <TheHeader page-type="Qrafters" />
     <v-img class="white--text align-end" height="500px" src="iceland.png">
       <v-row align="end">
         <v-col>
@@ -34,12 +34,11 @@
 </template>
 
 <script>
-import Header from '../../components/Layouts/Header'
+import TheHeader from '~/components/Organisms/TheHeader'
 import LoginCard from '~/components/Organisms/LoginCard'
 export default {
-  name: 'QraftersIndex',
   components: {
-    Header,
+    TheHeader,
     LoginCard
   }
 }

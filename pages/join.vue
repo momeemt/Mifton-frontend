@@ -1,6 +1,6 @@
 <template>
   <div id="joinPage">
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <h1>採用情報</h1>
     <p>
       Miftonでは、Minecraftプレイヤーの創作を支援する目標のもと、スタッフとして協力して頂ける方を募集しています。
@@ -87,11 +87,11 @@
 </template>
 
 <script>
-import Header from '~/components/Layouts/Header'
+import TheHeader from '~/components/Organisms/TheHeader'
 
 export default {
   components: {
-    Header
+    TheHeader
   }
 }
 </script>

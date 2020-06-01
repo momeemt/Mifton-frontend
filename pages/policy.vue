@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <div id="policyCardContainer">
       <v-card id="policyCard" outlined width="75%">
         <v-card-title>プライバシーポリシー</v-card-title>
@@ -17,17 +17,19 @@
         </v-card-content>
       </v-card>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Header from '../components/Layouts/Header'
-import Footer from '../components/Layouts/Footer'
-import Policy from '../assets/json/policy.json'
+import TheHeader from '~/components/Organisms/TheHeader'
+import TheFooter from '~/components/Organisms/TheFooter'
+import Policy from '~/assets/json/policy.json'
 export default {
-  name: 'PolicyVue',
-  components: { Footer, Header },
+  components: {
+    TheFooter,
+    TheHeader
+  },
   data() {
     return {
       policyData: Policy

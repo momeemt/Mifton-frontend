@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header page-type="Bector" />
+    <TheHeader page-type="Bector" />
     <v-img
       class="white--text align-end"
       height="500px"
@@ -61,11 +61,25 @@
 </template>
 
 <script>
-import Header from '../../components/Layouts/Header'
 import LoginCard from '../../components/Organisms/LoginCard'
+import TheHeader from '~/components/Organisms/TheHeader'
 export default {
-  name: 'BectorIndex',
-  components: { LoginCard, Header }
+  components: {
+    LoginCard,
+    TheHeader
+  },
+  head() {
+    return {
+      title: 'Bector'
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      if (this.$store.state.sessions.isLoggedIn) {
+        this.$router.push('/bector/home')
+      }
+    }, 0)
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header page-type="Crafes" />
+    <TheHeader page-type="Crafes" />
     <v-img
       class="white--text align-end"
       height="500px"
@@ -20,12 +20,11 @@
 </template>
 
 <script>
-import Header from '../../components/Layouts/Header'
+import TheHeader from '~/components/Organisms/TheHeader'
 import LoginCard from '~/components/Organisms/LoginCard'
 export default {
-  name: 'CrafesIndex',
   components: {
-    Header,
+    TheHeader,
     LoginCard
   }
 }

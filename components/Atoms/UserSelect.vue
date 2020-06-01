@@ -1,5 +1,15 @@
 <template>
-  <v-select :items="items" :label="label" rounded outlined color="#EC6D51" />
+  <div>
+    <v-select
+      v-model="selectValue"
+      :items="items"
+      :label="label"
+      rounded
+      outlined
+      color="#EC6D51"
+    ></v-select>
+    {{ selectValue }}
+  </div>
 </template>
 
 <script>
@@ -20,6 +30,11 @@ export default {
     items: {
       type: Array,
       required: true
+    }
+  },
+  data() {
+    return {
+      selectValue: ''
     }
   },
   computed: {

@@ -26,7 +26,6 @@
 
 <script>
 export default {
-  name: 'LinksVue',
   layout: 'pc/general',
   // TODO: エラーハンドリングを追加する
   async asyncData({ app }) {
@@ -34,6 +33,11 @@ export default {
     const resCode = res.resCode
     const resData = res.resData
     return { resData, resCode }
+  },
+  head() {
+    return {
+      title: '便利リンク集'
+    }
   }
 }
 </script>

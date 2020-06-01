@@ -1,17 +1,19 @@
 <template>
   <div>
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <h1>ヘルプページ</h1>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Header from '../components/Layouts/Header'
-import Footer from '../components/Layouts/Footer'
+import TheHeader from '~/components/Organisms/TheHeader'
+import TheFooter from '~/components/Organisms/TheFooter'
 export default {
-  name: 'HelpVue',
-  components: { Footer, Header }
+  components: {
+    TheFooter,
+    TheHeader
+  }
 }
 </script>
 

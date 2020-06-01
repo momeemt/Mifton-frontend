@@ -14,13 +14,17 @@
 
 <script>
 export default {
-  name: 'NotificationVue',
   layout: 'pc/general',
   async asyncData({ app }) {
     const res = await app.$api.index('notifications')
     const notificationsData = res.res
     const resCode = res.resCode
     return { notificationsData, resCode }
+  },
+  head() {
+    return {
+      title: '通知'
+    }
   }
 }
 </script>

@@ -11,13 +11,20 @@
         <p>現在の{{ modelName }}数は {{ modelObjectCount }} です。</p>
       </v-toolbar>
     </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon @click="editItem(item)" small class="mr-2">
+        mdi-pencil
+      </v-icon>
+      <v-icon @click="deleteItem(item)" small>
+        mdi-delete
+      </v-icon>
+    </template>
   </v-data-table>
 </template>
 
 <script>
 import createModal from '~/components/manages/createModal'
 export default {
-  name: 'ManageDataTable',
   components: {
     createModal
   },
@@ -42,6 +49,14 @@ export default {
   computed: {
     modelObjectCount() {
       return this.modelObject.length
+    }
+  },
+  methods: {
+    editItem(item) {
+      this.$emit('edit', item)
+    },
+    deleteItem(item) {
+      this.$emit('delete', item)
     }
   }
 }

@@ -23,6 +23,11 @@ export default {
     const resData = res.res
     const resCode = res.resCode
     return { resData, resCode }
+  },
+  head() {
+    return {
+      title: 'お知らせ'
+    }
   }
 }
 </script>

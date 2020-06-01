@@ -1,26 +1,26 @@
 <template>
   <div id="loginPage">
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <div id="loginCardContainer">
       <LoginCard />
     </div>
-    <Footer></Footer>
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Header from '~/components/Layouts/Header'
-import Footer from '~/components/Layouts/Footer'
+import TheHeader from '~/components/Organisms/TheHeader'
+import TheFooter from '~/components/Organisms/TheFooter'
 import LoginCard from '~/components/Organisms/LoginCard'
-import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
+import RedirectGuestUser from '~/middleware/RedirectGuestUser'
 
 export default {
   components: {
     LoginCard,
-    Header,
-    Footer
+    TheHeader,
+    TheFooter
   },
-  middleware: homeRedirectLoggedUser
+  middleware: RedirectGuestUser
 }
 </script>
 

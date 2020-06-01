@@ -33,10 +33,14 @@ import momentTimezone from 'moment-timezone'
 import { mapGetters } from 'vuex'
 import DisplayUserName from '~/components/General/DisplayUserName'
 export default {
-  name: 'UsersId',
   layout: 'pc/general',
   components: {
     DisplayUserName
+  },
+  head() {
+    return {
+      title: this.user.name
+    }
   },
   filters: {
     formatDatetime(datetime) {

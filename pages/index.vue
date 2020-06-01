@@ -1,6 +1,6 @@
 <template>
   <div id="topPage">
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <div id="topSection">
       <div id="topDescript">
         <p id="dsc_line1">Minecraftを</p>
@@ -103,81 +103,81 @@
         <h2 class="text-center">
           Miftonは無料でご利用いただけます。今まで知らなかった新たな世界に飛び込みましょう。
         </h2>
-        <v-row>
-          <v-col>
-            <p>ユーザーID</p>
-            <v-text-field
-              v-model="user.user_id"
-              solo
-              placeholder="希望するユーザーID"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <p>ニックネーム</p>
-            <v-text-field
-              v-model="user.name"
-              solo
-              placeholder="ニックネームを決めましょう"
-            >
-            </v-text-field>
-          </v-col>
-          <v-col>
-            <p>メールアドレス</p>
-            <v-text-field
-              v-model="user.email"
-              solo
-              placeholder="example@mifton.app"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <p>パスワード</p>
-            <v-text-field
-              v-model="user.password"
-              solo
-              type="password"
-              placeholder="パスワードを決めましょう"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <p>パスワード(確認)</p>
-            <v-text-field
-              v-model="user.password_confirmation"
-              solo
-              type="password"
-              placeholder="もう一度チェック"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <div class="text-center">
-          <v-btn @click="registerUser" rounded width="70%">登録する</v-btn>
-        </div>
-        <small>
-          登録する前に利用規約とプライバシーポリシーを読んでください。登録すると、これらに同意したとみなされます。
-        </small>
+        <v-form autocomplete="on">
+          <v-row>
+            <v-col>
+              <p>ユーザーID</p>
+              <v-text-field
+                v-model="user.user_id"
+                solo
+                placeholder="希望するユーザーID"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <p>ニックネーム</p>
+              <v-text-field
+                v-model="user.name"
+                solo
+                placeholder="ニックネームを決めましょう"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col>
+              <p>メールアドレス</p>
+              <v-text-field
+                v-model="user.email"
+                solo
+                placeholder="example@mifton.app"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <p>パスワード</p>
+              <v-text-field
+                v-model="user.password"
+                solo
+                type="password"
+                placeholder="パスワードを決めましょう"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <p>パスワード(確認)</p>
+              <v-text-field
+                v-model="user.password_confirmation"
+                solo
+                type="password"
+                placeholder="もう一度チェック"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <div class="text-center">
+            <v-btn @click="registerUser" rounded width="70%">登録する</v-btn>
+          </div>
+          <small>
+            登録する前に利用規約とプライバシーポリシーを読んでください。登録すると、これらに同意したとみなされます。
+          </small>
+        </v-form>
       </div>
     </div>
     <SubFooter />
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Header from '~/components/Layouts/Header'
-import Footer from '~/components/Layouts/Footer'
-import SubFooter from '~/components/Layouts/subFooter'
+import TheHeader from '~/components/Organisms/TheHeader'
+import TheFooter from '~/components/Organisms/TheFooter'
+import SubFooter from '~/components/Organisms/SubFooter'
 import LoginCard from '~/components/Organisms/LoginCard'
-import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
 
 export default {
   components: {
     LoginCard,
-    Header,
-    Footer,
+    TheHeader,
+    TheFooter,
     SubFooter
   },
-  middleware: homeRedirectLoggedUser,
   data() {
     return {
       user: {
@@ -188,6 +188,13 @@ export default {
         password_confirmation: ''
       }
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      if (this.$store.state.sessions.isLoggedIn) {
+        this.$router.push('/home')
+      }
+    }, 0)
   },
   methods: {
     registerUser() {

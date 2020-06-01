@@ -1,6 +1,6 @@
 <template>
   <div id="signUpPage">
-    <Header page-type="General" />
+    <TheHeader page-type="General" />
     <div id="signUpCardContainer">
       <SignUpCard />
     </div>
@@ -28,7 +28,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
@@ -45,18 +45,18 @@
 }
 </style>
 <script>
-import Header from '~/components/Layouts/Header'
-import Footer from '~/components/Layouts/Footer'
+import TheHeader from '~/components/Organisms/TheHeader'
+import TheFooter from '~/components/Organisms/TheFooter'
 import SignUpCard from '~/components/Organisms/SignUpCard'
-import homeRedirectLoggedUser from '~/middleware/homeRedirectLoggedUser'
+import RedirectGuestUser from '~/middleware/RedirectGuestUser'
 
 export default {
   components: {
-    Footer,
-    Header,
+    TheFooter,
+    TheHeader,
     SignUpCard
   },
-  middleware: homeRedirectLoggedUser,
+  middleware: RedirectGuestUser,
   data() {
     return {
       new_user: {

@@ -1,70 +1,47 @@
 <template>
   <div id="bectorHome">
-    <div id="branchErrorContainer" v-if="checkExistsError()">
-      <div class="displayErrorDetail">
-        <p class="errorDetailTitle">
-          エラーが発生しました
-        </p>
-        <p>
-          大変申し訳ございません。よろしければ、サービス向上のため、エラーの解消にご協力ください。
-        </p>
-        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />
-        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />
-        <p>エラー詳細</p>
-        <p>{{ displayReasonOfError() }}</p>
-      </div>
-    </div>
-    <div v-else>
-      <NewDropForm @add="addNewDrop" />
-      <v-divider></v-divider>
-      <v-bottom-navigation
-        id="switchTimeline"
-        :input-value="true"
-        color="indigo"
-        mandatory
-        shift
-      >
-        <v-btn @click="switchTimeline = 'home'">
-          <v-icon>fas fa-home</v-icon>
-          <span>ホーム</span>
-        </v-btn>
-        <v-btn>
-          <v-icon>fas fa-user-friends</v-icon>
-          <span>相互</span>
-        </v-btn>
-        <v-btn @click="switchTimeline = 'drops'">
-          <v-icon>fas fa-eye-dropper</v-icon>
-          <span>ドロップ</span>
-        </v-btn>
-        <v-btn @click="switchTimeline = 'topics'">
-          <v-icon>fas fa-newspaper</v-icon>
-          <span>トピック</span>
-        </v-btn>
-        <v-btn>
-          <v-icon>fas fa-globe</v-icon>
-          <span>グローバル</span>
-        </v-btn>
-      </v-bottom-navigation>
-      <DropsContainer :posts="getTimelineData()" :addPost="addPostCount" />
-    </div>
+    <!--    <div id="branchErrorContainer" v-if="checkExistsError()">-->
+    <!--      <div class="displayErrorDetail">-->
+    <!--        <p class="errorDetailTitle">-->
+    <!--          エラーが発生しました-->
+    <!--        </p>-->
+    <!--        <p>-->
+    <!--          大変申し訳ございません。よろしければ、サービス向上のため、エラーの解消にご協力ください。-->
+    <!--        </p>-->
+    <!--        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />-->
+    <!--        <img src="../../assets/errorExplore2.gif" class="errorDetailImage" />-->
+    <!--        <p>エラー詳細</p>-->
+    <!--        <p>{{ displayReasonOfError() }}</p>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <NewDropForm />
+    <v-divider></v-divider>
+    <SwitchTimeLine />
+    <DropsContainer />
   </div>
 </template>
 
 <script>
 // import ActionCable from 'actioncable'
-import DropsContainer from '~/components/Bector/DropsContainer.vue'
-import NewDropForm from '~/components/Bector/NewDropForm.vue'
+import DropsContainer from '~/components/Bector/DropsContainer'
+import NewDropForm from '~/components/Organisms/NewDropForm'
+import SwitchTimeLine from '~/components/Organisms/SwitchTimeLine'
 
 // eslint-disable-next-line no-unused-vars
 // const cable = ActionCable.createConsumer('ws:localhost:8080/cable')
 // Vue.prototype.$cable = cable
 
 export default {
-  name: 'BectorHomePage',
   layout: 'pc/Bector',
   components: {
     DropsContainer,
-    NewDropForm
+    NewDropForm,
+    SwitchTimeLine
+  },
+  head() {
+    return {
+      title: 'Bector'
+    }
   },
   data() {
     return {
@@ -72,17 +49,10 @@ export default {
       addPostCount: 0
     }
   },
-  async asyncData({ app }) {
-    const res = await app.$api.index('posts')
-    const postsData = res.res
-    const resCode = res.resCode
-    const dropsData = postsData.filter(function(post) {
-      return post.type === 'drop'
-    })
-    const topicsData = postsData.filter(function(post) {
-      return post.type === 'topic'
-    })
-    return { postsData, resCode, dropsData, topicsData }
+  async asyncData({ store }) {
+    await store.dispatch('bector/fetchPosts')
+    await store.dispatch('bector/fetchDrops')
+    await store.dispatch('bector/fetchTopics')
   },
   mounted() {
     this.$nuxt.$on('addDrop', this.addNewDrop)
@@ -128,13 +98,6 @@ export default {
 #bectorHome,
 #branchErrorContainer {
   height: 100%;
-}
-#switchTimeline {
-  box-shadow: none !important;
-  position: sticky;
-  top: 50px;
-  z-index: 2;
-  border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
 }
 .displayErrorDetail {
   text-align: center;

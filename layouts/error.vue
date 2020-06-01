@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <div v-if="error.statusCode === 404">
-      <Header page-type="General" />
-      <img id="img404NotFound" src="../assets/404.jpeg" />
+      <TheHeader page-type="General" />
+      <h1>存在しないページです</h1>
     </div>
     <div v-else>
       <p>申し訳ございません。</p>
@@ -15,9 +15,11 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
-import Header from '~/components/Layouts/Header'
+import TheHeader from '~/components/Organisms/TheHeader'
 export default {
-  components: { Header },
+  components: {
+    TheHeader
+  },
   props: {
     error: {
       type: Object,

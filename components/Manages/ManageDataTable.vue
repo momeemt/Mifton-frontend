@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import createModal from '~/components/manages/createModal'
+import createModal from '~/components/Manages/createModal'
 export default {
   components: {
     createModal

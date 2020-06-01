@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import convenienceLinkJsonData from '~/assets/json/modelobject/convenience_links.json'
+import convenienceLinkJsonData from '~/assets/json/modelObject/convenience_links.json'
 import ManageDataTable from '~/components/Manages/ManageDataTable'
 export default {
   layout: 'pc/manage',

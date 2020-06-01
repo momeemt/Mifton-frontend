@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <Header page-type="General" />
+      <TheHeader page-type="General" />
       <div id="flex">
         <div id="leftContent">
           <GeneralHyperLinkContainer />
@@ -16,10 +16,13 @@
 </template>
 
 <script>
-import Header from '~/components/Layouts/Header'
+import TheHeader from '~/components/Organisms/TheHeader'
 import GeneralHyperLinkContainer from '~/components/Organisms/GeneralHyperLinkContainer'
 export default {
-  components: { GeneralHyperLinkContainer, Header }
+  components: {
+    GeneralHyperLinkContainer,
+    TheHeader
+  }
 }
 </script>
 

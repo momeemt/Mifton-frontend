@@ -1,12 +1,20 @@
 <template>
   <div id="app">
     <v-app>
-      <Header page-type="Bector" />
-      <v-dialog v-model="showingDropDialog" width="700px">
-        <NewDropForm @close="closeDropDialog" @add="emitAddDrop" />
+      <TheHeader page-type="Bector" />
+      <v-dialog
+        :value="newDropFormDialog"
+        @click:outside="switchNewDropFormDialog"
+        width="700px"
+      >
+        <NewDropForm />
       </v-dialog>
-      <v-dialog v-model="showingTopicDialog" width="1000px">
-        <NewTopicForm @close="closeTopicDialog" />
+      <v-dialog
+        :value="newTopicFormDialog"
+        @click:outside="switchNewTopicFormDialog"
+        width="1000px"
+      >
+        <NewTopicForm />
       </v-dialog>
       <div id="container">
         <div id="leftContent">
@@ -14,7 +22,7 @@
             <div class="buttonWrapper">
               <v-btn
                 id="drop-button"
-                @click="openDropDialog"
+                @click="switchNewDropFormDialog"
                 class="ma-2 blue white--text darken-3 py-0"
                 rounded
                 depressed
@@ -25,7 +33,7 @@
             <div class="buttonWrapper">
               <v-btn
                 id="topic-button"
-                @click="openTopicDialog"
+                @click="switchNewTopicFormDialog"
                 class="ma-2 indigo white--text darken-3 py-0"
                 rounded
                 depressed
@@ -34,7 +42,7 @@
               </v-btn>
             </div>
           </div>
-          <HyperLinkContainer :listDatas="listDatas" page-type="Bector" />
+          <BectorHyperLinkContainer />
         </div>
         <div id="middleContent">
           <nuxt />
@@ -48,67 +56,36 @@
 </template>
 
 <script>
-import Header from '~/components/Layouts/Header'
-import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
+import { mapGetters, mapMutations } from 'vuex'
+import TheHeader from '~/components/Organisms/TheHeader'
+import BectorHyperLinkContainer from '~/components/Organisms/BectorHyperLinkContainer'
 import NotificationContainer from '~/components/Bector/NotificationContainer'
-import NewDropForm from '~/components/Bector/NewDropForm'
+import NewDropForm from '~/components/Organisms/NewDropForm'
 import NewTopicForm from '~/components/Bector/NewTopicForm'
-import homeExpectBector from '~/middleware/homeExpectBector'
 
 export default {
-  name: 'PCBectorLayout',
   components: {
-    Header,
-    HyperLinkContainer,
+    TheHeader,
+    BectorHyperLinkContainer,
     NotificationContainer,
     NewDropForm,
     NewTopicForm
   },
-  middleware: homeExpectBector,
-  data() {
-    return {
-      listDatas: [
-        { text: 'Home', icon: 'fas fa-home', link: '/bector/home' },
-        { text: '通知', icon: 'far fa-bell', link: '/bector/notifications' },
-        { text: 'トレンド', icon: 'fas fa-fire', link: '/bector/trend' },
-        {
-          text: 'メッセージ',
-          icon: 'far fa-envelope',
-          link: '/bector/messages'
-        },
-        { text: 'リスト', icon: 'fas fa-list', link: '/bector/lists' },
-        {
-          text: 'ブックマーク',
-          icon: 'far fa-bookmark',
-          link: `/bector/bookmarks`
-        },
-        {
-          text: 'もっと見る',
-          icon: 'fas fa-ellipsis-h',
-          link: '/bector/more'
-        },
-        { text: 'Miftonに戻る', icon: 'fas fa-chevron-left', link: '/' }
-      ],
-      showingDropDialog: false,
-      showingTopicDialog: false
-    }
+  computed: {
+    ...mapGetters('dialog', ['newDropFormDialog', 'newTopicFormDialog'])
+  },
+  mounted() {
+    setTimeout(() => {
+      if (!this.$store.state.sessions.isLoggedIn) {
+        this.$router.push('/bector')
+      }
+    }, 0)
   },
   methods: {
-    openDropDialog() {
-      this.showingDropDialog = true
-    },
-    closeDropDialog() {
-      this.showingDropDialog = false
-    },
-    emitAddDrop(drop) {
-      this.$nuxt.$emit('addDrop', drop)
-    },
-    openTopicDialog() {
-      this.showingTopicDialog = true
-    },
-    closeTopicDialog() {
-      this.showingTopicDialog = false
-    }
+    ...mapMutations('dialog', [
+      'switchNewDropFormDialog',
+      'switchNewTopicFormDialog'
+    ])
   }
 }
 </script>

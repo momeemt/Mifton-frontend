@@ -32,5 +32,14 @@ export const actions = {
   async logout({ commit }, user) {
     await this.$api.delete('sessions', user)
     commit('deleteUser')
+  },
+  async fetchCurrentUser(context) {
+    const response = await this.$api.show('users', context.state.currentUser.id)
+    const resUser = response.res
+    const status = response.resCode
+    if (status === 200) {
+      context.commit('setUser', resUser)
+    }
+    return { status }
   }
 }

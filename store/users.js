@@ -21,6 +21,9 @@ export const mutations = {
     state.optionalUserDatum = user.optional_user_datum
     state.job = user.user_job
   },
+  deleteUser(state, { user }) {
+    state.users = state.users.filter((v) => v.id !== user.id)
+  },
   updateUser(state, { payload }) {
     const key = payload.key
     state.user[key] = payload.value
@@ -57,8 +60,12 @@ export const actions = {
     const user = payload.user
     await this.$api.update('users', user)
   },
-  async updateOptionalUserDatum({ commit }, { payload }) {
+  async updateOptionalDatum({ commit }, { payload }) {
     const optionalUserDatum = payload.optionalUserDatum
     await this.$api.update('optional_user_data', optionalUserDatum)
+  },
+  async deleteUser({ commit }, { payload }) {
+    await this.$api.delete('users', payload)
+    commit('deleteUser', { user: payload })
   }
 }

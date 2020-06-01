@@ -11,6 +11,33 @@ export const mutations = {
   },
   updateUserName(state, newVal) {
     state.currentUser.name = newVal
+  },
+  updateProfile(state, newVal) {
+    state.currentUser.optional_user_datum.profile = newVal
+  },
+  updateWebsite(state, newVal) {
+    state.currentUser.optional_user_datum.website = newVal
+  },
+  updateLocation(state, newVal) {
+    state.currentUser.optional_user_datum.location = newVal
+  },
+  updateBirthday(state, newVal) {
+    state.currentUser.optional_user_datum.birthday = newVal
+  },
+  updatePublishBirthday(state, newVal) {
+    state.currentUser.optional_user_datum.publish_birthday = newVal
+  },
+  updateTwitterID(state, newVal) {
+    state.currentUser.optional_user_datum.twitter_id = newVal
+  },
+  updateLobiID(state, newVal) {
+    state.currentUser.optional_user_datum.lobi_id = newVal
+  },
+  updateGithubID(state, newVal) {
+    state.currentUser.optional_user_datum.github_id = newVal
+  },
+  updateDiscordID(state, newVal) {
+    state.currentUser.optional_user_datum.discord_id = newVal
   }
 }
 

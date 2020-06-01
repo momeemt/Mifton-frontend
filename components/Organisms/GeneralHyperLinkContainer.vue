@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <HyperLinkContainer :listDatas="getListData()" page-type="General" />
-  </div>
+  <HyperLinkContainer :listData="getListData()" page-type="General" />
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import HyperLinkContainer from '~/components/layouts/HyperLinkContainer'
+import HyperLinkContainer from '~/components/Molecules/HyperLinkContainer'
 export default {
   components: {
     HyperLinkContainer

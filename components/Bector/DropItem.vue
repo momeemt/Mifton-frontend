@@ -4,7 +4,7 @@
     :ripple="false"
     class="dropItem"
   >
-    <DisplayUserIcon :user="drop.user" />
+    <UserIcon :user="drop.user" />
     <v-list-item-content>
       <div class="dropDetailInfo">
         <p>{{ drop.user.name }}</p>
@@ -18,35 +18,7 @@
         </p>
       </div>
       <p class="dropContent">{{ drop.content }}</p>
-      <div class="dropAction">
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>mdi-reply</v-icon></v-btn
-        >
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>mdi-face</v-icon></v-btn
-        >
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>fas fa-retweet</v-icon></v-btn
-        >
-      </div>
+      <!--      <DropAction />-->
     </v-list-item-content>
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
@@ -55,6 +27,10 @@
         </v-btn>
       </template>
       <v-list width="150">
+        <v-list-item @click.stop="openConfirmDialog(drop)">
+          <v-icon>mdi-delete</v-icon>
+          <v-list-item-title>編集する</v-list-item-title>
+        </v-list-item>
         <v-list-item @click.stop="openConfirmDialog(drop)">
           <v-icon class="red--text">mdi-delete</v-icon>
           <v-list-item-title class="red--text">削除する</v-list-item-title>
@@ -66,11 +42,12 @@
 
 <script>
 import momentTimezone from 'moment-timezone'
-import DisplayUserIcon from '~/components/general/DisplayUserIcon'
+import UserIcon from '~/components/Atoms/UserIcon'
+// import DropAction from '~/components/Molecules/DropAction'
 export default {
-  name: 'DropItemVue',
   components: {
-    DisplayUserIcon
+    UserIcon
+    // DropAction
   },
   filters: {
     formatDateTime(datetime) {

@@ -1,6 +1,11 @@
 <template>
-  <div class="displayUserName">
-    <v-tooltip v-for="(data, key) in authorities" v-if="userJob[key]" bottom>
+  <div class="DisplayUserName">
+    <v-tooltip
+      v-for="(data, key) in authorities"
+      :key="key"
+      v-if="userJob[key]"
+      bottom
+    >
       <template v-slot:activator="{ on }">
         <v-icon v-on="on" :color="data.color">
           fas fa-star
@@ -15,7 +20,6 @@
 
 <script>
 export default {
-  name: 'DisplayUserName',
   props: {
     userName: {
       type: String,

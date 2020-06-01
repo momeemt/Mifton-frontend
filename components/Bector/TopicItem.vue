@@ -4,7 +4,7 @@
     :ripple="false"
     class="topicItem"
   >
-    <DisplayUserIcon :user="topic.user" />
+    <UserIcon :user="topic.user" />
     <v-list-item-content>
       <div class="topicDetailInfo">
         <p>{{ topic.user.name }}</p>
@@ -22,35 +22,6 @@
       </div>
       <p>{{ topic.title }}</p>
       <div v-html="$md.render(topic.content)" class="topicContent" />
-      <div class="topicAction">
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>mdi-reply</v-icon></v-btn
-        >
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>mdi-face</v-icon></v-btn
-        >
-        <v-btn
-          @click.stop=""
-          class="mx-2"
-          icon
-          dark
-          small
-          color="grey lighten-1"
-          ><v-icon>fas fa-retweet</v-icon></v-btn
-        >
-      </div>
     </v-list-item-content>
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
@@ -70,11 +41,10 @@
 
 <script>
 import momentTimezone from 'moment-timezone'
-import DisplayUserIcon from '~/components/general/DisplayUserIcon'
+import UserIcon from '~/components/Atoms/UserIcon'
 export default {
-  name: 'TopicItemVue',
   components: {
-    DisplayUserIcon
+    UserIcon
   },
   filters: {
     formatDateTime(datetime) {

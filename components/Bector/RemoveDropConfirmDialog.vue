@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showingDialog" width="500">
+  <v-dialog width="500">
     <v-card>
       <v-card-title>ドロップを削除しますか？</v-card-title>
       <v-card-text>
@@ -21,12 +21,6 @@
 
 <script>
 export default {
-  props: {
-    showingDialog: {
-      type: Boolean,
-      required: true
-    }
-  },
   methods: {
     removeDrop() {
       this.$emit('rmDrop')

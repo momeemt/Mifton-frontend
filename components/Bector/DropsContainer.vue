@@ -3,19 +3,21 @@
     <RemoveDropConfirmDialog
       @rmDrop="removeDrop"
       @cancelRemovingDrop="cancelRemovingDrop"
-      :showing_dialog="showing_dialog"
+      :showing_dialog="false"
     />
     <v-list
-      v-for="index in dropCount"
+      v-for="index in numOfDisplayPosts"
       :key="index"
       three-line
       class="dropsContainerList"
     >
-      <div v-if="posts[index - 1].type === 'drop'">
-        <DropItem :drop="posts[index - 1]" />
-      </div>
-      <div v-else>
-        <TopicItem :topic="posts[index - 1]" />
+      <div v-if="isExistPost(index)">
+        <div v-if="displayPosts[index - 1].type === 'drop'">
+          <DropItem :drop="displayPosts[index - 1]" />
+        </div>
+        <div v-else>
+          <TopicItem :topic="displayPosts[index - 1]" />
+        </div>
       </div>
     </v-list>
     <infinite-loading
@@ -32,12 +34,12 @@
 
 <script>
 import momentTimezone from 'moment-timezone'
+import { mapGetters, mapMutations } from 'vuex'
 import RemoveDropConfirmDialog from '~/components/Bector/RemoveDropConfirmDialog'
 import DropItem from '~/components/Bector/DropItem'
 import TopicItem from '~/components/Bector/TopicItem'
 
 export default {
-  name: 'DropsContainerVue',
   components: {
     RemoveDropConfirmDialog,
     DropItem,
@@ -51,24 +53,18 @@ export default {
       return date
     }
   },
-  props: {
-    posts: {
-      type: Array,
-      required: true
-    },
-    addPost: {
-      type: Number,
-      required: true
-    }
-  },
-  data() {
-    return {
-      expectedRemovingDrop: {},
-      showing_dialog: false,
-      dropCount: Math.min(20, this.posts.length) + this.addPost
-    }
+  computed: {
+    ...mapGetters('bector', [
+      'displayPosts',
+      'drops',
+      'topics',
+      'numOfDisplayPosts'
+    ])
   },
   methods: {
+    isExistPost(index) {
+      return this.displayPosts[index - 1] != null
+    },
     openConfirmDialog(drop) {
       this.showing_dialog = true
       this.expectedRemovingDrop = drop
@@ -82,14 +78,17 @@ export default {
     },
     infiniteHandler($state) {
       setTimeout(() => {
-        if (this.posts.length > this.dropCount) {
-          this.dropCount += Math.min(10, this.posts.length - this.dropCount)
+        if (this.displayPosts.length > this.numOfDisplayPosts) {
+          this.addNumOfDisplayPosts(
+            Math.min(10, this.displayPosts.length - this.numOfDisplayPosts)
+          )
           $state.loaded()
         } else {
           $state.complete()
         }
       }, 1000)
-    }
+    },
+    ...mapMutations('bector', ['addNumOfDisplayPosts'])
   }
 }
 </script>

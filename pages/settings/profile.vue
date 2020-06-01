@@ -13,20 +13,16 @@
       </v-btn>
     </div>
     <div id="settingProfile">
-      <v-file-input
-        accept="image/png, image/jpeg, image/bmp"
-        placeholder="ヘッダー画像をアップロードする"
-        prepend-icon="mdi-camera"
+      <UserImgUploader
+        model-property="header"
         label="ヘッダー"
-        outlined
-      ></v-file-input>
-      <v-file-input
-        accept="image/png, image/jpeg, image/bmp"
-        placeholder="アイコン画像をアップロードする"
-        prepend-icon="mdi-camera"
+        placeholder="ヘッダー画像をアップロードする"
+      />
+      <UserImgUploader
+        model-property="icon"
         label="アイコン"
-        outlined
-      ></v-file-input>
+        placeholder="アイコンをアップロードする(アイコンは自動保存されます)"
+      />
       <UserTextField
         model-key="user"
         model-property="name"
@@ -92,16 +88,22 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import UserTextField from '@/components/Atoms/UserTextField'
-import UserTextArea from '@/components/Atoms/UserTextArea'
-import UserSelect from '@/components/Atoms/UserSelect'
+import UserTextField from '~/components/Atoms/UserTextField'
+import UserTextArea from '~/components/Atoms/UserTextArea'
+import UserSelect from '~/components/Atoms/UserSelect'
+import UserImgUploader from '~/components/Atoms/UserImgUploader'
 export default {
-  name: 'ProfileVue',
   layout: 'pc/general',
   components: {
     UserTextField,
     UserTextArea,
-    UserSelect
+    UserSelect,
+    UserImgUploader
+  },
+  head() {
+    return {
+      title: 'プロフィールを編集'
+    }
   },
   data() {
     return {
@@ -109,30 +111,31 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('users', ['user', 'optionalData', 'job'])
+    ...mapGetters('users', ['user', 'optionalUserDatum', 'job'])
   },
-  asyncData({ store }) {
-    const currentUser = store.state.sessions.currentUser
-    store.dispatch('users/fetchUser', { id: currentUser.id })
+  mounted() {
+    setTimeout(() => {
+      const currentUser = this.$store.state.sessions.currentUser
+      this.$store.dispatch('users/fetchUser', { id: currentUser.id })
+    }, 0)
   },
   methods: {
-    // TODO: エラーハンドリングを追加する
     saveProfile() {
       const userPayload = { user: this.user }
       this.updateProfile({ payload: userPayload })
       const optionalUserDatumPayload = {
-        optionalUserDatum: this.optionalData
+        optionalUserDatum: this.optionalUserDatum
       }
-      this.updateOptionalUserDatum({ payload: optionalUserDatumPayload })
+      this.updateOptionalDatum({ payload: optionalUserDatumPayload })
     },
     updateSetting(event, settingKey) {
       this.updateUser(settingKey, event)
     },
-    updateOptionalDataSetting(event, settingKey) {
-      this.updateOptionalDataSetting(settingKey, event)
+    updateOptionalUserDatumSetting(event, settingKey) {
+      this.updateOptionalUserDatum(settingKey, event)
     },
     ...mapMutations('users', ['updateUser', 'updateOptionalUserDatum']),
-    ...mapActions('users', ['updateProfile'])
+    ...mapActions('users', ['updateProfile', 'updateOptionalDatum'])
   }
 }
 </script>

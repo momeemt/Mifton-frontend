@@ -1,0 +1,24 @@
+<template>
+  <v-btn
+    @click.stop="reaction"
+    class="mx-2"
+    icon
+    dark
+    small
+    color="grey lighten-1"
+  >
+    <v-icon>
+      mdi-face
+    </v-icon>
+  </v-btn>
+</template>
+
+<script>
+export default {
+  methods: {
+    reaction() {}
+  }
+}
+</script>
+
+<style scoped></style>

@@ -1,5 +1,8 @@
 // import colors from 'vuetify/es5/util/colors'
 
+require('dotenv').config()
+const { BASE_API } = process.env
+
 export default {
   mode: 'spa',
   /*
@@ -90,7 +93,7 @@ export default {
   proxy: {
     '/api/v1/': {
       // backendのコンテナip
-      target: 'http://localhost:8080',
+      target: BASE_API,
       pathRewrite: {
         '^/api/v1/': '/api/v1/'
       }
@@ -125,5 +128,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    BASE_API
   }
 }

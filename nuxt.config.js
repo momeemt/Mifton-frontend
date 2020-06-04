@@ -1,7 +1,7 @@
 // import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config()
-const { BASE_API_URL, KIT_ID } = process.env
+const { BASE_API_URL, BASE_API_TOKEN, KIT_ID } = process.env
 
 export default {
   mode: 'spa',
@@ -127,5 +127,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    BASE_API_TOKEN
   }
 }

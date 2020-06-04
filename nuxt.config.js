@@ -1,7 +1,7 @@
 // import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config()
-const { BASE_API } = process.env
+const { BASE_API_URL, KIT_ID } = process.env
 
 export default {
   mode: 'spa',
@@ -25,14 +25,14 @@ export default {
     script: [
       {
         innerHTML: `
-      (function(d) {
-        var config = {
-          kitId: 'acu2quv',
-          scriptTimeout: 3000,
-          async: true
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document);
+          (function(d) {
+            var config = {
+              kitId: '${KIT_ID}',
+              scriptTimeout: 3000,
+              async: true
+            },
+            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+          })(document);
       `
       }
     ]
@@ -92,8 +92,7 @@ export default {
   },
   proxy: {
     '/api/v1/': {
-      // backendのコンテナip
-      target: BASE_API,
+      target: BASE_API_URL,
       pathRewrite: {
         '^/api/v1/': '/api/v1/'
       }
@@ -128,8 +127,5 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  },
-  env: {
-    BASE_API
   }
 }
